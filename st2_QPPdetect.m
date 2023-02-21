@@ -1,20 +1,17 @@
 clear; clc; 
 %% Setup data input, output directory & running method
 dataext='visual_test'; % extended filename
-
 runM=1; % QPP running method
 % runM: 1 -concatenate all D{i,j} as a whole group and detect group QPP
 %       2 -concatenate all D{i,:} and detect QPP from all scans of each subject
 %       3 -concatenate all D{:,j} and detect QPP from all subjects of each
 %       scan
-
 rbstScrn=1; % control for robust QPP detection
 %rbstScrn:  1 - scan all possible initial segments for robust QPP detection
 %           0 - scan randomly slected initial segments for fast QPP detection
-
-%% Load data & other hidden parameters
+%% Automatically load data & other hidden parameters
 fprintf('Loading data & hidden parameters\n'); 
-p2param=['Params_' dataext '.mat']; load(p2param); addpath(genpath(p2qppf));
+p2param=['Params_' dataext '.mat']; load(p2param); addpath(p2qppf);
 load(p2data, 'D0','MotionInf','nY','G2Y','ibY','iG2Y','YLB'); [nsbj,nscn]=size(D0); 
 
 ssg=ones(nP,1); ssg(2:end)=PL(2:end); tres=0.7; 
@@ -22,7 +19,7 @@ paramQPPf2=param_QPPf2(nP, PL, cthph, sdph, s);
 paramQPPf4=param_QPPf4(nP, PL, ibY, iG2Y, fz); 
 ITPstp=20; % step to show progress of algorithm when running ITP times
 
-d2O='./Outputs/'; if ~exist(d2O,'dir'), mkdir(d2O); end % directory to outputs files
+d2O='./Output/'; if ~exist(d2O,'dir'), mkdir(d2O); end % directory to outputs files
 if runM==1
     Ng=1; a0=[d2O 'GrpQPP/']; if ~exist(a0,'dir'), mkdir(a0); end % dir2 save GrpQPPs  
     a=[a0 'interm/']; if ~exist(a,'dir'), mkdir(a); end % save intermediate files
@@ -70,7 +67,7 @@ for ig=1:Ng
             ITP=paramQPPf1.ITPfast{ip}; % for fast detection
         end
         
-        [QPP,TMX,C,MET,ITER,TMPL,TMXTMPL,CTMPL,SCMX]=QPPf1detectRbs(D,nscng,ntlist, ...
+        [QPP,TMX,C,MET,ITER,TMPL,TMXTMPL,CTMPL,SCMX]=QPPf1detectRbst(D,nscng,ntlist, ...
                         paramQPPf1.PL(ip), ...
                         paramQPPf1.cth{ip}, ...
                         paramQPPf1.ncth1(ip), ...
@@ -102,7 +99,14 @@ for ig=1:Ng
         QPPs{ip,1}=QPP; QPPs{ip,2}=QPPn; Cs(ip,:)=C;
         fprintf([isip 'f4regscn\n']);
         for ip2=1:ip-1, if cellfun(@isempty,(QPPs(ip2,1)))
-            fl=load(p2S{ig,ip2},'QPP','C'); QPPs{ip2,1}=fl.QPP; Cs(ip2,:)=fl.C; end; end
+            fl=load(p2S{ig,ip2},'QPP','QPPn','C','TMX','MET','TMXn','METn','QPPa','Ca','TMXa','METa','D','Dr','Cr','FCr'); 
+            QPPs{ip2,1}=fl.QPP; QPPs{ip2,2}=fl.QPPn; 
+            TMXs{ip2,1}=fl.TMX; TMXs{ip2,2}=fl.TMXn; 
+            METs{ip2,1}=fl.MET; METs{ip2,2}=fl.METn; 
+            Cs(ip2,:)=fl.C; QPPas{ip2,1}=fl.QPPa; 
+            TMXas{ip2,1}=fl.TMXa; METas{ip2,1}=fl.METa; Cas{ip2}=fl.Ca;
+            Ds{ip2,1}=fl.D; Drs{ip2,1}=fl.Dr; Crs{ip2}=fl.Cr; FCrs{ip2,1}=fl.FCr;
+        end; end
         [Dr,Cr,FCr]=QPPf4regscnRbst(D,ntlist, QPPs(1:ip,1),Cs(1:ip,:),nscng,PL(ip), ...
                                     paramQPPf4.PLc{ip},...
                                     paramQPPf4.ibY, ...

@@ -1,7 +1,7 @@
 clear; clc;  close all
 %% For saving & reading path-names
 data='visual'; % the filename of the data file
-p2data=['./resources/' data '.mat']; % path of data file which must includes following parameters:
+p2data=['./Input/' data '.mat']; % path of data file which must includes following parameters:
 % D0:   a nsbj X nscn cell matrix. Each cell has a nroi X ntimepoints 
 %       matrix of EPI timeseries
 % MotionInf: a nsbj X nscn cell matrix. Each cell >=1 segments of
@@ -15,7 +15,7 @@ p2data=['./resources/' data '.mat']; % path of data file which must includes fol
 
 ext=['test']; % filename extension for the parameter file
 p2param=['Params_' data '_' ext]; % parameter filename
-p2qppf='../QPPfv0922/'; %directory of QPP functions
+p2qppf='./QPPfv0922/'; %directory of QPP functions
 %% Set up global parameters 
 %%%%%% for QPP detection %%%%%%
 % nP: total # of QPPs to detect (E.g., only detect the primary QPP (QPP1) if nP=1; detect both QPP1 & QPP2 if nP=2, etc.)
