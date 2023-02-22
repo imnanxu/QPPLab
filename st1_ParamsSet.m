@@ -1,6 +1,7 @@
 clear; clc;  close all
 %% For saving & reading path-names
-data='visual'; % the filename of the data file
+data='HumanVisual'; % the filename of the data file
+data='HCPR3gsr';
 p2data=['./Input/' data '.mat']; % path of data file which must includes following parameters:
 % D0:   a nsbj X nscn cell matrix. Each cell has a nroi X ntimepoints 
 %       matrix of EPI timeseries

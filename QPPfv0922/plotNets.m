@@ -10,8 +10,10 @@ set(gca,'XTick',[PLhs (PLhs+PLhe)/2 PLhe],'XTickLabel',[1 round(PL/2) PL],'YTick
 
 if net==1    
     for i=2:length(YLB)        
-        plot([ibY(i) ibY(i)],[0 nX2*2],'k'); 
-    end             
+        plot([ibY(i) ibY(i)],[0 nX2],'k'); 
+    end        
+    axis equal; axis([0 nX2 0 nX2]); 
     set(gca,'XTick',tick_pos_msk,'XTickLabel',YLB)
+    xtickangle(45)
 end
 hold off;

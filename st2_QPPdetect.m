@@ -1,6 +1,7 @@
-clear; clc; 
+clear; clc; close all
 %% Setup data input, output directory & running method
-dataext='visual_test'; % extended filename
+dataext='HumanVisual_test'; % extended filename=[data '_' ext];
+dataext='HCPR3gsr_test'; % extended filename=[data '_' ext];
 runM=1; % QPP running method
 % runM: 1 -concatenate all D{i,j} as a whole group and detect group QPP
 %       2 -concatenate all D{i,:} and detect QPP from all scans of each subject
