@@ -59,19 +59,26 @@ p2data=['./Input/' data '.mat']; % path of data file which must includes followi
 ## 2. Main Pipeline
 <a name="section-2-1"></a>
 ### 2.1 (Step 1) Run 'st1_ParamsSet.m'
-This is for setting up the intial parameters for the QPP analysis in step 2. The following variables will be predefined.
+This is for setting up the intial parameters for the QPP analysis in step 2. The following variables will be predefined, and a parameter file Params_`data`\_`ext`.mat will be generated after running this script.
 |      Purpose     |  Variable name | Description | Note   | 
 |------------------|-----------------|--------|-------------|
 |  Filepath  		|`data`   | the input filename |The input should has the filename `data`.mat |
-|                  	|`ext`    | filename extension for the parameter file| Generate parameter filename:  Params_`data`\_`ext`.mat |
+|                  	|`ext`    | filename extension for the parameter file| The parameter filename will be  Params_`data`\_`ext`.mat |
 |  QPP global parameters|`nP`     | total # of QPPs to detect (nP<=5)| If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.|
 |		   	|`PL`     | a (nP X 1) vector of QPP window length | ~20s for humans (e.g., PL(ip)=20/TR), |
 |  QPP detection	|`cth13` & `cth34`     | a 2D vector of correlation threshold for QPP1-QPP3 (`cth13`) & for QPP4-QPP5 (`cth45`)| If you do not need to detect QPP4-QPP5, please assign `cth34` a random number (e.g., `cth34`=[0, 0]).|
-|		   	|`fd`     | control for fast QPP dectection (`fd`=0) or robust QPP detection (`fd`=1)|The fast QPP detection selectes a limited number of starting points which was used in XXXX, whereas the robust detection selects all possible starting points which was used in (XXX).|
 |  QPP phase adjustment	|`cthph` | similarity threshold when phase-adjusting (phadj) a QPP |Default value: cthph=0.88|
 |		   	|`s`     | control for strict phase adjustment (`s`=1) or relaxed phase adjustment (`s`=0)||
 |		   	|`sdph`     | a (nP X 1) cell array of reference parcels| Each cell may include >=1 parcel IDs. The phase adjusted QPP waveform will start from rising positive values for the selected parcels.|
 |  Functional connectivity (FC) analysis|`fz` | control for the output matrix `FCr` to be the pearson correlation (`fz`=1) or to be the Fisher Z-Transformation of the pearson correlaion (`fz`=1).|
+<a name="section-2-2"></a>
+### 2.2 (Step 2) Run 'st2_QPPanalysis.m'
+This is for detecting and analyzing QPPs based on the parameters setup in step 1. The following three parameters needs to be prespecified at the beginning of this script.
+|      Purpose     |  Variable name  | Description | Note   | 
+|------------------|-----------------|-------------|--------|
+|  Filepath  		|`dataext`   | parameter filename |The parameter .mat file generated from step 1, which has the filename Param_`dataext`.mat |
+|  Data concatenation method |`runM`     | control the way to concatenate the data| If `runM`=1, concatenate all D{i,j} as a whole group and detect group QPP; if `runM`=2, concatenate all D{i,:} and detect QPP from all scans of each subject; if `runM`=3, concatenate all D{:,:} and detect QPP from all subjects of each scan.|
+| QPP detection	method|`rbstScrn`     | control for fast QPP dectection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selectes a limited number of starting points which was used in XXXX, whereas the robust detection selects all possible starting points which was used in (XXX).|
 
 <a name="section-3"></a>
 ## 3. Library Files 
