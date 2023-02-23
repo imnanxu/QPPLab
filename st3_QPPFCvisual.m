@@ -1,7 +1,9 @@
 clear; clc; close all
-%% Setup data input, output directory & running method
-dataext='HumanVisual_test'; % extended filename=[data '_' ext];
-% dataext='HCPR3gsr_test'; % extended filename=[data '_' ext];
+%% Setup data input & visualization parameters
+% dataext='HumanVisual_test'; % extended filename=[data '_' ext];
+dataext='HCPR3gsr_test'; % extended filename=[data '_' ext];
+p2param=['Params_' dataext '.mat']; load(p2param);
+
 runM=1; % QPP running method
 % runM: 1 -concatenate all D{i,j} as a whole group and detect group QPP
 %       2 -concatenate all D{i,:} and detect QPP from all scans of each subject
@@ -10,27 +12,23 @@ runM=1; % QPP running method
 rbstScrn=1; % control for robust QPP detection
 %rbstScrn:  1 - scan all possible initial segments for robust QPP detection
 %           0 - scan randomly slected initial segments for fast QPP detection
+bin=0.08;
+Pselect=[1, 2, 4]; %select QPP#s to be visualized
+Gselect=[1 2];
 %% Automatically load data & other hidden parameters
-fprintf('QPP & FC Visualizations\n'); 
-p2param=['Params_' dataext '.mat']; load(p2param); addpath(p2qppf);
-% load(p2data, 'D0','MotionInf','nY','G2Y','ibY','iG2Y','YLB'); [nsbj,nscn]=size(D0); 
-% 
-% ssg=ones(nP,1); ssg(2:end)=PL(2:end); tres=0.7; 
-% paramQPPf2=param_QPPf2(nP, PL, cthph, sdph, s);
-% paramQPPf4=param_QPPf4(nP, PL, ibY, iG2Y, fz); 
-% ITPstp=20; % step to show progress of algorithm when running ITP times
-
+fprintf('QPP & FC Visualizations...\n'); 
+addpath(p2qppf);
 d2O='./Output/';  % directory to outputs files
 if runM==1
-    Ng=1; a0=[d2O 'GrpQPP/']; if ~exist(a0,'dir'), mkdir(a0); end % dir2 save GrpQPPs  
+    Ng=1;Gselect=1; a0=[d2O 'GrpQPP/']; if ~exist(a0,'dir'), mkdir(a0); end % dir2 save GrpQPPs  
     a=[a0 'interm/']; if ~exist(a,'dir'), mkdir(a); end % save intermediate files
     indn='Grp'; 
 elseif runM==2
-    Ng=nsbj; a0=[d2O 'SbjQPP/']; if ~exist(a0,'dir'), mkdir(a0); end % dir2 save SbjQPPs  
+    Ng=length(Gselect); a0=[d2O 'SbjQPP/']; if ~exist(a0,'dir'), mkdir(a0); end % dir2 save SbjQPPs  
     a=[a0 'interm/']; if ~exist(a,'dir'), mkdir(a); end % save intermediate files
     indn='Sbj';
 elseif runM==3   
-    Ng=nscn; a0=[d2O 'ScanQPP/']; if ~exist(a0,'dir'), mkdir(a0); end % dir2 save ScanQPPs  
+    Ng=length(Gselect); a0=[d2O 'ScanQPP/']; if ~exist(a0,'dir'), mkdir(a0); end % dir2 save ScanQPPs  
     a=[a0 'interm/']; if ~exist(a,'dir'), mkdir(a); end % save intermediate files
     indn='Scn';
 else, error('Unidenfied value for runM.\n')
@@ -44,60 +42,60 @@ for ig=1:Ng % gp id
      
 end
 %% Visualization
-ct=0; ksalpha=0.05; bin=0.08;
-for ig=1:Ng
-    load(p2S0{ig},'QPPs','TMXs','Cs','METs', 'QPPas', 'TMXas', 'METas', 'Cas', ...
+ct=0; nPs=length(Pselect);
+for ip=Pselect 
+    for ig=Gselect
+        load(p2S0{ig},'QPPs','TMXs','Cs','METs', 'QPPas', 'TMXas', 'METas', 'Cas', ...
         'Ds', 'Drs', 'Crs', 'FCrs','nY', 'G2Y', 'ibY','iG2Y','YLB', ...
         'ntlist','ITP','PL','ssg','tres',...        
         'cth13','cth45','paramQPPf2','paramQPPf4');      
-    for ip=1:nP  
+ 
         ct=ct+1;
         f1=figure(1); %qpps
-        subplot(Ng,nP,ct); imagesc(QPPs{ip,1}); plotNets(YLB,ibY,PL(ip),0);
-        title(['QPP #' num2str(ip)]);
+        subplot(nPs,Ng,ct); imagesc(QPPs{ip,1},[-1 1]); 
+        plotNets(YLB,ibY,PL(ip),0); colorbar
+        if ig==1, ylabel(['QPP #' num2str(ip)]); end
+        if ip==1, title([indn num2str(ig)],'FontSize', 8); end
 
         f2=figure(2); %reverse qpps
-        subplot(Ng,nP,ct); imagesc(QPPs{ip,2}); plotNets(YLB,ibY,PL(ip),0);
-        title(['rph QPP #' num2str(ip)]);
-        if ip==1, ylabel('reverse phase (rph)'); end
-        
-        
+        subplot(nPs,Ng,ct); imagesc(QPPs{ip,2},[-1 1]); 
+        plotNets(YLB,ibY,PL(ip),0); colorbar
+        if ig==1, ylabel(['rph QPP #' num2str(ip)]); end
+        if ip==1, title(['reverse phase (rph) QPP: ' indn num2str(ig)],'FontSize', 8); end
+              
         f3=figure(3); %qpp sliding correlations        
-        subplot(Ng,nP,ct); C1=Cs(ip,:); 
+        subplot(nPs,Ng,ct); C1=Cs(ip,:); 
         TMX1=TMXs{ip,1}; Met1=METs{ip,1}; TMX2=TMXs{ip,2}; Met2=METs{ip,2};
         plot(C1,'b'); hold on; plot(TMX1,C1(TMX1),'bv'); plot(TMX2,C1(TMX2),'bo'); 
         axis([0 length(C1) -1 1]); 
         set(gca,'XTick',ntlist(1):ntlist(2):sum(ntlist),'YTick',-1:0.2:1); grid on
-        title({['QPP #' num2str(ip)],['median max: ' num2str(0.01*round(100*Met1(1))) ...
+        title({['sliding correlation: ' indn num2str(ig)],['median max: ' num2str(0.01*round(100*Met1(1))) ...
         ', median \Deltat_{max}:' num2str(0.1*round(10*Met1(2))) ' tps' ...
         ', #max:' num2str(Met1(3))], ['median min: ' num2str(0.01*round(100*Met2(1))) ...
         ', median \Deltat_{min}:' num2str(0.1*round(10*Met2(2))) ' tps' ...
         ', #min:' num2str(Met2(3))]},'FontSize', 8,'fontweight','normal');
-        if ip==1, ylabel(['sliding correlation timecourse']); end
+        if ig==1,  ylabel(['QPP #'  num2str(ip)],'FontSize', 8); end
            
-        f5=figure(5); %qpp sliding correlations before and after qpp regression     
-        subplot(Ng,nP,ct); Cr2=Crs{ip}(ip,:);
+        f5=figure(4); %qpp sliding correlations before and after qpp regression     
+        subplot(nPs,Ng,ct); Cr2=Crs{ip}(ip,:);
         plot(C1,'b'); hold on; plot(Cr2,'r'); axis([0 length(C1) -1 1]); 
-        set(gca,'XTick',ntlist(1):ntlist(2):sum(ntlist),'YTick',-1:0.2:1); grid on
-        title(['QPP #' num2str(ip)],'fontweight','normal');        
+        set(gca,'XTick',ntlist(1):ntlist(2):sum(ntlist),'YTick',-1:0.2:1); grid on          
         legend('before qpp regression','after ~');
-        if ip==1,  ylabel(['sliding correlation timecourse']); end
+        if ig==1,  ylabel(['QPP #'  num2str(ip)],'FontSize', 8); end
+        if ip==1,  title({'sliding corr', ['timecourse: ' indn num2str(ig)]},'FontSize', 8); end
         
-        f6=figure(6); %qpp sliding correlations before and after qpp regression     
-        subplot(Ng,nP,ct); 
-        [kl,js,ks]=hist2distns(C1, Cr2,'before qpp reg', 'after ~', 'b','r', bin, ksalpha);
-        title({['QPP #' num2str(ip)],['KL div=' num2str(kl) ...
-        ', JS dist=' num2str(js) ', KS(' num2str(ksalpha) ')=' num2str(ks)]},'fontweight','normal','FontSize', 8);
+        f6=figure(5); %histograms of sliding correlation timecourse before & after qpp regression     
+        subplot(nPs,Ng,ct); 
+        hist2distns(C1, Cr2,'before qpp reg', 'after ~', 'b','r', bin);
+        if ig==1,  ylabel(['QPP #'  num2str(ip)],'FontSize', 8); end
         legend('before qpp regression','after ~'); 
-        if ip==1, ylabel('timecourse histogram'); end
+        if ip==1, title(['sliding corr histogram: ' indn num2str(ig)],'FontSize', 8); end
     
-        f7=figure(7); %qpp sliding correlations before and after qpp regression     
-        subplot(Ng,nP,ct); FC=corr(Ds{ip}'); FC1=triu(FC,0); FC2=tril(FCrs{ip},-1);
-        imagesc(FC1+FC2); plotNets(YLB,ibY,PL(ip),1); title(['QPP #' num2str(ip)]);
-        if ip==1, ylabel({['FC matrix before (upper)'], 'and after (lower) qpp reg'}); end
+        f7=figure(6); %FC matrix before and after qpp regression     
+        subplot(nPs,Ng,ct); FC=corr(Ds{ip}'); FC1=triu(FC,0); FC2=tril(FCrs{ip},-1);
+        imagesc(FC1+FC2,[-1 1]); colorbar; plotNets(YLB,ibY,PL(ip),1); 
+        if ig==1,  ylabel(['QPP #'  num2str(ip)],'FontSize', 8); end
+        if ip==1, title({['FC before (up) & after (low)'], ['qpp reg: ' indn num2str(ig)]},'FontSize', 8); end
     
-        
-        
-    end
-    
+    end   
 end
