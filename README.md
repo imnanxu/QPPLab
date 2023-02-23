@@ -66,57 +66,12 @@ This is for setting up the intial parameters for the QPP analysis in step 2. The
 |                  	|`ext`    | filename extension for the parameter file| generate parameter filename:  Params_`data`\_`ext`.mat |
 |  QPP global parameters|`nP`     | total # of QPPs to detect (nP<=5)| If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.|
 |		   	|`PL`     | a (nP X 1) vector of QPP window length | ~20s for humans (e.g., PL(ip)=20/TR), |
-|  QPP detection	|`cth13` & `cth34`     | correlation threshold for QPP1-QPP3 (`cth13`) & for QPP4-QPP5 (`cth45`)| If you do nit need to detect QPP4-QPP5, please still set `cth34` to a random value (e.g., `cth34`=0).|
-|		   	|$fd     | control for fast QPP dectection (=0) or robust QPP detection (=1)||
-
-
-
-
-%% For QPP detection: QPPf1detectRbs.m
-% cth13 & cth45: correlation threshold for QPP1-QPP3 & for QPP4-QPP5;
-% fd: 1 or 0
-%    1 -fast QPP detection; selected limited number of starting points
-%    0 -robust detection; select all possible starting points
-cth13=[0.1, 0.2]; cth45=[0.1, 0.2]; fd=1; 
-
-%% For QPP phase adjustment: QPPf2phadj.m
-% cthph: similarity threshold when phase-adjusting (phadj) a QPP
-% s: 1 or 0
-%    1 -strict phase adjustment
-%    0 -relaxed phase adjustmente
-cthph=0.88; s=0; 
-
-% Reference parcel(s) ID for QPP phase adjustment: 
-% One can >=1 parcel(s). These parcels will have QPP waveform starting from 
-% rising postive values (e.g. sine wave).
-sdph=cell(nP,1); 
-sdph{1}={163;18}; sdph{2}={163; 87}; sdph{3}={18;87}; sdph(4:5)={{18}}; 
-%% For network analysis (e.g., QPPf4regscnRbst.m)
-% fz: 1 or 0. 
-%     1 -output matrix FCr will be the pearson correlation matrix
-%     0 -output matrix FCr will be the Fisher Z-Transformation of the pearson correlaion
-fz=1; 
-save(p2param);
-
-
-
-
-
-
-    EPI0.nii(.gz), 4-dim: the forward epi scan of the whole brain timeseries  
-    EPI_forward0.nii(.gz), 3-dim: a 1 volume forward epi scan of the brain
-    EPI_reverse0.nii(.gz), 3-dim: a 1 volume reverse epi scan of the same brain
-Note: The 3D volumes in the above three .nii(.gz) files need to be in the same dimension and resolution.\
---*If the EPI0.nii was scanned immediately after EPI_reverse0.nii, then the 1st volume of EPI0.nii can be extracted as EPI_forward0.nii. E.g.,*
-
-	fslroi EPI0 EPI_forward0 0 1
---*Similarly, one can extract the last volume of EPI0.nii as EPI_forward0.nii if EPI0.nii was scanned immediately before.*
-
-The user can also process the data without the topup distortion correction, especially when the user did not record the reverse scan (EPI_reverse0.nii(.gz)). In such case, only the 4-dim EPI0.nii(.gz) file is required.
-
-This is an EPI template registration pipeline, so the anatomical scan of each brain (usually the T2 scan due to the smaller brain size of rodents (Xu et al., 2022)) is not required. Two data samples, one for rat whole brain (./data_rat1/) and one for mouse whole brain (./data_mouse1/), are provided. 
-
-Notably, there is a clear brain size difference across humans, rats and mice. Ratiometrically, an isotropic voxel size of 1 mm in human brain is comparable to an isotropic voxel size of 114 um in the rat brain or an isotropic voxel size of 70 um in the mouse brain (Xu et al., 2022). Standard preprocessing software packages, including FSL5.0 (Jenkinson et al., 2012) and AFNI (Cox, 1996; Cox & Hyde, 1997), employed in this pipeline, are designed for human datasets. To make them applicable to the rodent datasets, it is recommended to convert the raw scanning file from bruker to nifti format, using the 10x voxel-size increment.
+|  QPP detection	|`cth13` & `cth34`     | a 2D vector of correlation threshold for QPP1-QPP3 (`cth13`) & for QPP4-QPP5 (`cth45`)| If you do not need to detect QPP4-QPP5, please assign `cth34` a random number (e.g., `cth34`=[0, 0]).|
+|		   	|`fd`     | control for fast QPP dectection (=0) or robust QPP detection (=1)|The fast QPP detection selectes a limited number of starting points, whereas the robust detection selects all possible starting points and used in .|
+|  QPP phase adjustment	|`cthph` | similarity threshold when phase-adjusting (phadj) a QPP | default value: cthph=0.88|
+|		   	|`s`     | control for strict phase adjustment (`s`=1) or relaxed phase adjustment (`s`=0)||
+|		   	|`sdph`     | a (nP X 1) cell array of reference parcels| Each cell may include >=1 parcel IDs. The phase adjusted QPP waveform will start from rising positive values for the selected parcels.|
+|  Functional connectivity (FC) analysis|`fz` | control for the output matrix `FCr` to be the pearson correlation (`fz`=1) or to be the Fisher Z-Transformation of the pearson correlaion (`fz`=1).|
 
 <a name="section-3"></a>
 ## 3. Library Files 
