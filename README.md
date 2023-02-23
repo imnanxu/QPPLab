@@ -2,13 +2,12 @@
 This is a generally applicable MATLAB toolbox, which detects, analyzes, and visualizes up to 5 QPPs and QPP regressed functional connectivity maps from fMRI timeseries of the brain across rodents and humans. This toolbox is a significant modification and extension of [QPP_Scripts_v0620](https://github.com/GT-EmoryMINDlab/QPP_Scripts_v0620), and can analyze QPPs for resting brain and for task-evoked/stimulated brains across species.
 
 # Table of Contents
-* 1 - [Prerequisite, Resources & Inputs](#section-1)
-    * 1.1 [Prerequisite](#section-1-1)
-    * 1.2 [Resources (./resources/)](#section-1-2)
-
-    * 1.3 [Input file preparation (./Inputs/)](#section-1-3)
-        * 1.3.1 [Parameters to include (*.mat)](#section-1-2-1)
-        * 1.3.2 [(optional) st0_ROIreOrg.m](#section-1-2-2)
+* 1 - [Prerequisite, inputs & resources](#section-1)
+    * 1.1 [Prerequisite](#section-1-1)    
+    * 1.2 [Input file (./Inputs/)](#section-1-2)
+        * 1.2.1 [Parameters to include (*.mat)](#section-1-2-1)
+        * 1.2.2 [(optional) st0_ROIreOrg.m](#section-1-2-2)
+    * 1.3 [Resources (./resources/)](#section-1-2)	
 * 2 - [Main Scripts](#section-2)
     * 2.1 [(Step 1) Run 'preproc_script_1.sh'](#section-2-1)
         * 2.1.1 [Slice time correction](#section-2-1-1)
