@@ -60,14 +60,14 @@ p2data=['./Input/' data '.mat']; % path of data file which must includes followi
 <a name="section-2-1"></a>
 ### 2.1 (Step 1) Run 'st1_ParamsSet.m'
 This is for setting up the intial parameters for the QPP analysis in step 2. The following variables will be predefined.
-|      Purpose     |  Variable names | Description & Note   | 
-|------------------|-----------------|--------|
-|  Filepath  		|$data   | the input filename | 
-|                  	|$ext    | filename extension for the parameter file; the parameter filename will be  Params_$data_$ext.mat |
-|  QPP global parameters|$nP     | total # of QPPs to detect (nP<=5);  if nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.|
-|		   	|$PL     | a (nP X 1) vector of QPP window length; ~20s for humans (e.g., PL(ip)=20/TR), |
-|  QPP detection	|$cth13 & $cth34     | correlation threshold for QPP1-QPP3 ($cth13) & for QPP4-QPP5 ($cth45). If you do nit need to detect QPP4-QPP5, please still set $cth34 to a random value (e.g., $cth34=0).|
-|		   	|$fd     | control for fast QPP dectection (=0) or robust QPP detection (=1)|
+|      Purpose     |  Variable names | Description | Note   | 
+|------------------|-----------------|--------|-------------|
+|  Filepath  		|`data`   | the input filename | |
+|                  	|`ext`    | filename extension for the parameter file| generate parameter filename:  Params_`data`\_`ext`.mat |
+|  QPP global parameters|`nP`     | total # of QPPs to detect (nP<=5)| If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.|
+|		   	|`PL`     | a (nP X 1) vector of QPP window length | ~20s for humans (e.g., PL(ip)=20/TR), |
+|  QPP detection	|`cth13` & `cth34`     | correlation threshold for QPP1-QPP3 (`cth13`) & for QPP4-QPP5 (`cth45`)| If you do nit need to detect QPP4-QPP5, please still set `cth34` to a random value (e.g., `cth34`=0).|
+|		   	|$fd     | control for fast QPP dectection (=0) or robust QPP detection (=1)||
 
 
 
