@@ -38,9 +38,70 @@ The toolbox has been cloned to this repository in *NIfTI_toolbox* for convenienc
     *Running Without Matlab Support:* By default, in *preproc_script_1.sh*, if WSL isn't detected, the default Matlab directory is set to `matlab`. Override this by passing a `--matlab_dir` argument in 
 the CLI. To run the first script without Matlab or PCNN3D, set the `--matlab_dir` argument to `NA`.
 
+p2data=['./Input/' data '.mat']; % path of data file which must includes following parameters:
+% D0:   a nsbj X nscn cell matrix. Each cell has a nroi X ntimepoints 
+%       matrix of EPI timeseries
+% MotionInf: a nsbj X nscn cell matrix. Each cell >=1 segments of
+%       timepoints without significant motions.
+% nY:   # of total networks
+% G2Y:  a (nroi X 1) vector including the network# of each ROI
+% ibY:  a (nY+1 X 1) vector including the last ROI label of each 
+%       functional network;  always set ibY(1)=0.
+% iG2Y: a (nY X 1) cell vector including the list of ROI labels for each network.
+% YLB: a (nY X 1) cell vector including the shorthand label for each network
+% %%%The last 5 variables can be generated from the original data and the
+% atlas-network file (see ./resources)
+
+
+
+
 <a name="section-2"></a>
-## 2. Data Files 
-If the data will be processed with the topup distortion correction (an optional procedure in Step 1), three input data files are required, each has a voxel size 10X from the scanning file (i.e., use 10X when generating .nii files by Bruker2nifti):
+## 2. Main Pipeline
+<a name="section-2-1"></a>
+### 2.1 (Step 1) Run 'st1_ParamsSet.m'
+This is for setting up the intial parameters for the QPP analysis in step 2. The following variables will be predefined.
+|      Purpose     |  Variable names | Description & Note   | 
+|------------------|-----------------|--------|
+|  Filepath  		|$data   | the input filename | 
+|                  	|$ext    | filename extension for the parameter file; the parameter filename will be  Params_$data_$ext.mat |
+|  QPP global parameters|$nP     | total # of QPPs to detect (nP<=5);  if nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.|
+|		   	|$PL     | a (nP X 1) vector of QPP window length; ~20s for humans (e.g., PL(ip)=20/TR), |
+|  QPP detection	|$cth13 & $cth34     | correlation threshold for QPP1-QPP3 ($cth13) & for QPP4-QPP5 ($cth45). If you do nit need to detect QPP4-QPP5, please still set $cth34 to a random value (e.g., $cth34=0).|
+|		   	|$fd     | control for fast QPP dectection (=0) or robust QPP detection (=1)|
+
+
+
+
+%% For QPP detection: QPPf1detectRbs.m
+% cth13 & cth45: correlation threshold for QPP1-QPP3 & for QPP4-QPP5;
+% fd: 1 or 0
+%    1 -fast QPP detection; selected limited number of starting points
+%    0 -robust detection; select all possible starting points
+cth13=[0.1, 0.2]; cth45=[0.1, 0.2]; fd=1; 
+
+%% For QPP phase adjustment: QPPf2phadj.m
+% cthph: similarity threshold when phase-adjusting (phadj) a QPP
+% s: 1 or 0
+%    1 -strict phase adjustment
+%    0 -relaxed phase adjustmente
+cthph=0.88; s=0; 
+
+% Reference parcel(s) ID for QPP phase adjustment: 
+% One can >=1 parcel(s). These parcels will have QPP waveform starting from 
+% rising postive values (e.g. sine wave).
+sdph=cell(nP,1); 
+sdph{1}={163;18}; sdph{2}={163; 87}; sdph{3}={18;87}; sdph(4:5)={{18}}; 
+%% For network analysis (e.g., QPPf4regscnRbst.m)
+% fz: 1 or 0. 
+%     1 -output matrix FCr will be the pearson correlation matrix
+%     0 -output matrix FCr will be the Fisher Z-Transformation of the pearson correlaion
+fz=1; 
+save(p2param);
+
+
+
+
+
 
     EPI0.nii(.gz), 4-dim: the forward epi scan of the whole brain timeseries  
     EPI_forward0.nii(.gz), 3-dim: a 1 volume forward epi scan of the brain
