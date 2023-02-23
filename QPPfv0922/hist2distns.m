@@ -1,4 +1,4 @@
-function [kl,js,ks]=hist2distns(SamplesRef, Samples,SampleRefName, SampleName, fc_ref,fc_sample, bin, ksalpha)
+function lgd=hist2distns(SamplesRef, Samples,SampleRefName, SampleName, fc_ref,fc_sample, bin)
 
 h2null=histogram(SamplesRef,'Normalization','probability', 'BinWidth', bin,'FaceColor',fc_ref); hold on; %SystematicStim Null
 h2=histogram(Samples,'Normalization','probability', 'BinWidth', bin,'FaceColor',fc_sample,'FaceAlpha',.4); %axis([0 max([QPPdelay3All; QPPdelay3restAll]) 0 1])
@@ -14,7 +14,7 @@ else
     h2BinCenters=h2nullBinCenters;
 end
 lgd=legend({[SampleRefName ' (m=' num2str(mean(SamplesRef)) ', ' num2str(length(SamplesRef)) 'pts)'], [SampleName ' (m=' num2str(mean(Samples)) ', ' num2str(length(Samples)) 'pts)']});
-lgd.FontSize = 10;
-kl = kldiv(h2BinCenters,h2nullValues+eps, h2Values+eps);
-js = kldiv(h2BinCenters,h2nullValues+eps, h2Values+eps,'js');
-ks = kstest2(SamplesRef,Samples,'Alpha',ksalpha); 
+lgd.FontSize = 8;
+% kl = kldiv(h2BinCenters,h2nullValues+eps, h2Values+eps);
+% js = kldiv(h2BinCenters,h2nullValues+eps, h2Values+eps,'js');
+% ks = kstest2(SamplesRef,Samples,'Alpha',ksalpha); 
