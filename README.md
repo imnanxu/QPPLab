@@ -62,13 +62,13 @@ p2data=['./Input/' data '.mat']; % path of data file which must includes followi
 This is for setting up the intial parameters for the QPP analysis in step 2. The following variables will be predefined.
 |      Purpose     |  Variable name | Description | Note   | 
 |------------------|-----------------|--------|-------------|
-|  Filepath  		|`data`   | the input filename | |
-|                  	|`ext`    | filename extension for the parameter file| generate parameter filename:  Params_`data`\_`ext`.mat |
+|  Filepath  		|`data`   | the input filename |The input should has the filename `data`.mat |
+|                  	|`ext`    | filename extension for the parameter file| Generate parameter filename:  Params_`data`\_`ext`.mat |
 |  QPP global parameters|`nP`     | total # of QPPs to detect (nP<=5)| If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.|
 |		   	|`PL`     | a (nP X 1) vector of QPP window length | ~20s for humans (e.g., PL(ip)=20/TR), |
 |  QPP detection	|`cth13` & `cth34`     | a 2D vector of correlation threshold for QPP1-QPP3 (`cth13`) & for QPP4-QPP5 (`cth45`)| If you do not need to detect QPP4-QPP5, please assign `cth34` a random number (e.g., `cth34`=[0, 0]).|
 |		   	|`fd`     | control for fast QPP dectection (`fd`=0) or robust QPP detection (`fd`=1)|The fast QPP detection selectes a limited number of starting points which was used in XXXX, whereas the robust detection selects all possible starting points which was used in (XXX).|
-|  QPP phase adjustment	|`cthph` | similarity threshold when phase-adjusting (phadj) a QPP | default value: cthph=0.88|
+|  QPP phase adjustment	|`cthph` | similarity threshold when phase-adjusting (phadj) a QPP |Default value: cthph=0.88|
 |		   	|`s`     | control for strict phase adjustment (`s`=1) or relaxed phase adjustment (`s`=0)||
 |		   	|`sdph`     | a (nP X 1) cell array of reference parcels| Each cell may include >=1 parcel IDs. The phase adjusted QPP waveform will start from rising positive values for the selected parcels.|
 |  Functional connectivity (FC) analysis|`fz` | control for the output matrix `FCr` to be the pearson correlation (`fz`=1) or to be the Fisher Z-Transformation of the pearson correlaion (`fz`=1).|
