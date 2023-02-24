@@ -97,7 +97,7 @@ In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), th
 | 5 | histograms of sliding correlation timecourses before and after QPP regression|
 | 6 | functional connectivity (FC) matrix before (upper triangule) and after (lower triangule) QPP regression |
 
-For figures 1, 2, and 6, ROIs are reorganized based on networks.
+In figures 1, 2, and 6, ROIs are reorganized based on networks.
 
 <a name="section-3"></a>
 ## 3. Output File Structure(./Output/)
