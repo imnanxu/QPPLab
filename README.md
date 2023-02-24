@@ -44,9 +44,10 @@ In addition, you will also need to prepare a atlas-network file. This file shoul
 
 <a name="section-2"></a>
 ## 2. Main Pipeline
+The main pipeline consists 3 steps. The 1st step (st1_ParamSt.m) sets up the intial parameters. The 2nd step (st2_QPPanalysis.m) detects and analyzes QPPs. The 3rd step (st3_QPPFCvisual.m) visualizes QPP and related results given the outputs of step 2. 
 <a name="section-2-1"></a>
 ### 2.1 (Step 1) Run 'st1_ParamsSet.m'
-This is for setting up the intial parameters for the QPP analysis in step 2. The following variables will be predefined, and a parameter file Params_`data`\_`ext`.mat will be generated after running this script.
+Following variables will be predefined, and a parameter file Params_`data`\_`ext`.mat will be generated after running this script.
 |      Purpose     |  Variable name | Description | Note   | 
 |------------------|-----------------|--------|-------------|
 |  Filepath  		|`data`   | the input filename |The input should has the filename `data`.mat |
@@ -76,7 +77,6 @@ The following analytical procedures will be executed.
 
 <a name="section-2-3"></a>
 ### 2.3 (Step 3) Run 'st3_QPPFCvisual.m'
-This is for visualizing QPP related results given the outputs of step 2. 
 <a name="section-2-3-1"></a>
 #### 2.3.1 Prespecified parameters       
 In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), the following three additional parameters can also be prespecified at the beginning of this script.
