@@ -14,11 +14,10 @@ This is a generally applicable MATLAB toolbox, which detects, analyzes, and visu
         * 2.3.1 [Prespecified parameters](#section-2-3-1)
         * 2.3.2 [Generated figures](#section-2-3-2)
 * 3 - [Input File](#section-3)
-   * 1.2 [Input file (./Inputs/)](#section-1-2)
-        * 1.2.1 [Parameters to include (*.mat)](#section-1-2-1)
-        * 1.2.2 [(optional) st0_ROIreOrg.m](#section-1-2-2)
+    * 3.1 [Input variables in `data`.mat](#section-3-1)
+    * 3.2 [(optional step) run 'st0_ROIreOrg.m' for variable generations](#section-3-2)
 * 4 - [Output Files](#section-4)
-* 4 - [References](#section-4)
+* 5 - [References](#section-4)
 
 
 <a name="section-1"></a>
