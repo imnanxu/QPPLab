@@ -30,14 +30,19 @@ This is a [Matlab](https://www.mathworks.com/) (The Mathworks Inc., Natick, MA, 
 ### 1.3 Input File (./input/`data`.mat)
 The input file `data`.mat is included in ./input/ folder whereas `data` is the input filename.
 #### 1.3.1 Input variables 
-Your input file `data`.mat must include the following variables.
+Your input file `data`.mat must include the following four variables.
 | Variable name | Description | Note   | 
-|---------------|--------|-------------|
+|--------|--------|-------------|
 |`D0`   | a (nsbj X nscn) cell matrix |Each cell has a nroi X ntimepoints matrix of EPI timeseries. |
 |`MotionInf`| a (nsbj X nscn) cell matrix | Each cell includes >=1 segment(s) of timepoints without significant motions.|
 |`ROI2Net`| a (nroi X 1) vector| Each entry is the network index corresponding to each ROI.|
 |'NetLB'| a (nY X 1) cell vector| Each cell includes the (shorthand label) for each network|
+
+
+
 Note: nsbj= number of subjects, nscn=number of EPI scans, nroi=number of ROIs, ntimepoints=number of timepoints.
+
+
 
 
 | 'nY' | total number of functional networks covered by ROIs | |
