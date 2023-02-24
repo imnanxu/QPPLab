@@ -36,7 +36,7 @@ Your input file `data`.mat must include the following four variables.
 |`D0`   | a (nsbj X nscn) cell matrix |Each cell has a nroi X ntimepoints matrix of EPI timeseries. |
 |`MotionInf`| a (nsbj X nscn) cell matrix | Each cell includes >=1 segment(s) of timepoints without significant motions.|
 |`ROI2Net`| a (nroi X 1) vector| Each entry is the network index corresponding to each ROI.|
-|'NetLB'| a (nY X 1) cell vector| Each cell includes the (shorthand label) for each network|
+|`NetLB`| a (nY X 1) cell vector| Each cell includes the (shorthand) label of each network|
 
 
 
