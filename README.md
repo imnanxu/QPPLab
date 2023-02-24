@@ -101,17 +101,17 @@ In figures 1, 2, and 6, ROIs are reorganized based on networks.
 
 <a name="section-3"></a>
 ## 3. Output Files(./Output/)
-   Output    
-    ├── GrpQPP                  # (runM=1) 
-    │   ├── benchmarks          # Load and stress tests
-    │   │      ├── integration         # End-to-end, integration tests (alternatively `e2e`)
-    |   │      ├── integration         # End-to-end, integration tests (alternatively `e2e`)
-    │   │      └── ...                # Unit tests
-    │   ├── benchmarks          # Load and stress tests
-    │   ├── benchmarks          # Load and stress tests  
-    │   └── ...               # Unit tests
-    │
-    └──
+      ./Output    
+         ├── GrpQPP                  # (runM=1) 
+         │   ├── benchmarks          # Load and stress tests
+         │   │      ├── integration         # End-to-end, integration tests (alternatively `e2e`)
+         |   │      ├── integration         # End-to-end, integration tests (alternatively `e2e`)
+         │   │      └── ...                # Unit tests
+         │   ├── benchmarks          # Load and stress tests
+         │   ├── benchmarks          # Load and stress tests  
+         │   └── ...               # Unit tests
+         │
+         └──
     │   
     └── ...
 
