@@ -85,13 +85,18 @@ In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), th
 |`Pselect`   | a vector of integers | to specify the QPP #s to be visualized |
 | `Gselect`   | a vector of integers | to specify the group# (e.g. which scans/subjects) to be compared; if `runM`=1, by default `Gselect`=1. |
 | `bin`| a decimal | to specify bin size of the histogram of sliding correlation timecouses|
+
 <a name="section-2-3-2"></a>
 #### 2.3.2 Generated figures
-| Figure index  | Description |
-|---------------|-------------|
-| 1 |
-| 2 |
-| 3 |
+| Index  | Figure Description |
+|--------|--------------------|
+| 1 | specified QPPs of each group|
+| 2 | phase reversed QPPs of each group |
+| 3 | sliding correlation timecourses with maxima and minima labeled |
+| 4 | sliding correlation timecourses before and after QPP regression|
+| 5 | histograms of sliding correlation timecourses before and after QPP regression|
+| 6 | functional connectivity (FC) matrix before (upper triangule) and after (lower triangule) QPP regression |
+For figures 1, 2, and 6, ROIs are reorganized based on networks.
 
 <a name="section-3"></a>
 ## 3. Output File Structure(./Output/)
