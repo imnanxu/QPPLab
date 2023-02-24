@@ -11,6 +11,8 @@ This is a generally applicable MATLAB toolbox, which detects, analyzes, and visu
 * 2 - [Main Scripts](#section-2)
     * 2.1 [(Step 1) Run 'st1_ParamsSet.m'](#section-2-1)
     * 2.2 [(Step 2) Run 'st2_QPPanalysis.m'](#section-2-2)
+        * 2.2.1 [Parameters to be prespecified](#section-2-3-1)
+        * 2.2.2 [Automated QPP analysis](#section-2-3-2)
     * 2.3 [(Step 3) Run 'st3_QPPFCvisual.m'](#section-2-3)
         * 2.3.1 [EPI registration estimation & wm/csf mask generation](#section-2-3-1)
         * 2.3.2 [Non-brain tissue noise estimation by PCA](#section-2-3-2)
@@ -65,12 +67,20 @@ This is for setting up the intial parameters for the QPP analysis in step 2. The
 |  Functional connectivity (FC) analysis|`fz` | control for the output matrix `FCr` to be the pearson correlation (`fz`=1) or to be the Fisher Z-Transformation of the pearson correlaion (`fz`=1).|
 <a name="section-2-2"></a>
 ### 2.2 (Step 2) Run 'st2_QPPanalysis.m'
-This is for detecting and analyzing QPPs based on the parameters setup in step 1. The following three parameters needs to be prespecified at the beginning of this script.
+This is for detecting and analyzing QPPs based on the parameters setup in step 1. 
+<a name="section-2-1-1"></a>
+#### 2.2.1 Parameters to be prespecified        
+The following three parameters needs to be prespecified at the beginning of this script.
 |      Purpose     |  Variable name  | Description | Note   | 
 |------------------|-----------------|-------------|--------|
 |  Filepath  		|`dataext`   | parameter filename |The parameter .mat file generated from step 1, which has the filename Param_`dataext`.mat |
 |  Data concatenation method |`runM`     | control the way to concatenate the data| If `runM`=1, concatenate all D{i,j} as a whole group and detect group QPP; if `runM`=2, concatenate all D{i,:} and detect QPP from all scans of each subject; if `runM`=3, concatenate all D{:,:} and detect QPP from all subjects of each scan.|
 | QPP detection	method|`rbstScrn`     | control for fast QPP dectection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selectes a limited number of starting points which was used in XXXX, whereas the robust detection selects all possible starting points which was used in (XXX).|
+
+<a name="section-2-1-1"></a>
+#### 2.2.2 Automated QPP analysis
+The following analytical procedures will be executed.
+
 
 <a name="section-3"></a>
 ## 3. Input File(./Inputs/)
