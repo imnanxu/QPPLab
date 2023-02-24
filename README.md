@@ -75,9 +75,11 @@ This is for detecting and analyzing QPPs based on the parameters setup in step 1
 <a name="section-3"></a>
 ## 3. Input File(./Inputs/)
 <a name="section-3-1"></a>	
-### 3.1 Input variables (*.mat)(#section-3-1)
+### 3.1 Input variables (`data`.mat)
+The input file should has the filename `data`.mat, which includes the following variables:
 
-### 3.2 (optional step) for variable generations: run 'st0_ROIreOrg.m' (#section-3-2)
+
+### 3.2 (optional step) run 'st0_ROIreOrg.m' for variable generations
 <a name="section-4-3-3"></a>
 #### 4.3.3 Nuisance regressions: 26 possible regressors (Chuang et al., 2018) & a user specified file of regressors
     a. 3 for detrends: constant, linear, and quadratic trends
