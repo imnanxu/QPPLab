@@ -59,9 +59,9 @@ Following variables will be predefined, and a parameter file Params_`data`\_`ext
 |		   	|`s`     | control for strict phase adjustment (`s`=1) or relaxed phase adjustment (`s`=0)||
 |		   	|`sdph`     | a (nP X 1) cell array of reference parcels| Each cell may include >=1 parcel IDs. The phase adjusted QPP waveform will start from rising positive values for the selected parcels.|
 |  Functional connectivity (FC) analysis|`fz` | control for the output matrix `FCr` to be the pearson correlation (`fz`=1) or to be the Fisher Z-Transformation of the pearson correlaion (`fz`=1).|
+
 <a name="section-2-2"></a>
 ### 2.2 (Step 2) Run 'st2_QPPanalysis.m'
-This is for detecting and analyzing QPPs based on the parameters setup in step 1. 
 <a name="section-2-1-1"></a>
 #### 2.2.1 Prespecified parameters       
 The following three parameters need to be prespecified at the beginning of this script.
@@ -72,8 +72,8 @@ The following three parameters need to be prespecified at the beginning of this 
 | QPP detection	method|`rbstScrn`     | control for fast QPP dectection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selectes a limited number of starting points which was used in XXXX, whereas the robust detection selects all possible starting points which was used in (XXX).|
 
 <a name="section-2-1-1"></a>
-#### 2.2.2 Automated QPP analysis
-The following analytical procedures will be executed.
+#### 2.2.2 Automated QPP analysis & Output variables
+The analytical procedures to be executed and corresponding outputs to be generated are listed below.
 
 <a name="section-2-3"></a>
 ### 2.3 (Step 3) Run 'st3_QPPFCvisual.m'
@@ -100,7 +100,20 @@ In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), th
 In figures 1, 2, and 6, ROIs are reorganized based on networks.
 
 <a name="section-3"></a>
-## 3. Output File Structure(./Output/)
+## 3. Output Files(./Output/)
+   Output    
+    ├── GrpQPP                  # (runM=1) 
+    │   ├── benchmarks          # Load and stress tests
+    │   │      ├── integration         # End-to-end, integration tests (alternatively `e2e`)
+    |   │      ├── integration         # End-to-end, integration tests (alternatively `e2e`)
+    │   │      └── ...                # Unit tests
+    │   ├── benchmarks          # Load and stress tests
+    │   ├── benchmarks          # Load and stress tests  
+    │   └── ...               # Unit tests
+    │
+    └──
+    │   
+    └── ...
 
 <a name="section-5"></a>
 ## 4. References
