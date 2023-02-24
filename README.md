@@ -2,9 +2,12 @@
 This is a generally applicable MATLAB toolbox, which detects, analyzes, and visualizes up to 5 QPPs and QPP regressed functional connectivity maps from fMRI timeseries of the brain across rodents and humans. This toolbox is a significant modification and extension of [QPP_Scripts_v0620](https://github.com/GT-EmoryMINDlab/QPP_Scripts_v0620), and can analyze QPPs for resting brain and for task-evoked/stimulated brains across species.
 
 # Table of Contents
-* 1 - [Prerequisite & Resources](#section-1)
-    * 1.1 [Prerequisite](#section-1-1)    
-    * 1.2 [Resources (./resources/)](#section-1-2)	
+* 1 - [Prerequisite](#section-1)
+    * 1.1 [Software dependencies](#section-1-1)    
+    * 1.2 [Supporting Functions & Resources](#section-1-2)	
+    * 1.3 [Input File (./input/)](#section-1-3)
+    * 1.3.1 -[Input variables in `data`.mat](#section-1-3-1)
+    * 1.3.2 -[(optional step) run 'st0_ROIreOrg.m' for variable generations](#section-1-3-2)        
 * 2 - [Main Scripts](#section-2)
     * 2.1 [(Step 1) Run 'st1_ParamsSet.m'](#section-2-1)
     * 2.2 [(Step 2) Run 'st2_QPPanalysis.m'](#section-2-2)
@@ -13,29 +16,38 @@ This is a generally applicable MATLAB toolbox, which detects, analyzes, and visu
     * 2.3 [(Step 3) Run 'st3_QPPFCvisual.m'](#section-2-3)
         * 2.3.1 [Prespecified parameters](#section-2-3-1)
         * 2.3.2 [Generated figures](#section-2-3-2)
-* 3 - [Input File](#section-3)
-    * 3.1 [Input variables in `data`.mat](#section-3-1)
-    * 3.2 [(optional step) run 'st0_ROIreOrg.m' for variable generations](#section-3-2)
+
 * 4 - [Output Files](#section-4)
 * 5 - [References](#section-4)
 
 
 <a name="section-1"></a>
-## 1. Dependencies
-1. [FSL5.0](https://web.mit.edu/fsl_v5.0.10/fsl/doc/wiki/FslInstallation(2f)Linux.html) (Jenkinson et al., 2012), [AFNI](https://afni.nimh.nih.gov/download) (Cox, 1996; Cox & Hyde, 1997), and [ANTs](https://github.com/ANTsX/ANTs/wiki/Compiling-ANTs-on-Linux-and-Mac-OS) (Avants et al., 2022): A Linux (i.e., Ubuntu, Fedora, and Red Hat) or MacOS system with the above 3 software packages installed is required. For Windows systems, it's possible to install the three packages through a Windows Subsystem for Linux (WSL, see "SoftwareInstallation_fsl_afni_ants.txt" for more details).
-2. [Matlab](https://www.mathworks.com/) (The Mathworks Inc., Natick, MA, USA, R2018a or a later version) and [NIfTI and ANALYZE toolbox](https://www.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image) (Chen, 2022) are required for calling PCNN3D (Chou et al., 2011), which is superior for mouse brain mask creation (see Section 4.1.4 for more details). 
-The toolbox has been cloned to this repository in *NIfTI_toolbox* for convenience.
+## 1. Prerequisite 
+<a name="section-1-1"></a>
+### 1.1 Software dependencies
+This is a [Matlab](https://www.mathworks.com/) (The Mathworks Inc., Natick, MA, USA, R2018a or a later version) toolbox. Any operational system with Matlab (R2018) installed will be sufficient to run this toolbox.
 
-    *Supported Matlab Operating Systems:* Matlab software is supported in Windows (10, 11, and Server 2019) as well as MacOS and Linux (i.e., Ubuntu, Debian, RedHat, SUSE). For the full Linux system requirements, please refer to the [official documentation](https://www.mathworks.com/support/requirements/matlab-linux.html). If installing WSL using a Linux distribution other than Ubuntu or Debian as described in *SoftwareInstallation_fsl_afni_ants.txt*, replace all `apt` and `apt-get` commands with the equivalent command for your OS package manager (e.g., [zypper](https://en.opensuse.org/SDB:Zypper_usage) for SUSE).
+### 1.3 Input File (./input/`data`.mat)
+The input file `data`.mat is included in ./input/ folder whereas `data` is the input filename.
+#### 1.3.1 Input variables 
+Your input file `data`.mat must include the following variables.
+| Variable name | Description | Note   | 
+|---------------|--------|-------------|
+|`D0`   | a (nsbj X nscn) cell matrix |Each cell has a nroi X ntimepoints matrix of EPI timeseries. |
+|`MotionInf`| a (nsbj X nscn) cell matrix | Each cell includes >=1 segment(s) of timepoints without significant motions.|
+|`ROI2Net`| a (nroi X 1) vector| Each entry is the network index corresponding to each ROI.|
+|'NetLB'| a (nY X 1) cell vector| Each cell includes the (shorthand label) for each network|
+Note: nsbj= number of subjects, nscn=number of EPI scans, nroi=number of ROIs, ntimepoints=number of timepoints.
 
-    *Running Without Matlab Support:* By default, in *preproc_script_1.sh*, if WSL isn't detected, the default Matlab directory is set to `matlab`. Override this by passing a `--matlab_dir` argument in 
-the CLI. To run the first script without Matlab or PCNN3D, set the `--matlab_dir` argument to `NA`.
 
-p2data=['./Input/' data '.mat']; % path of data file which must includes following parameters:
-% D0:   a nsbj X nscn cell matrix. Each cell has a nroi X ntimepoints 
-%       matrix of EPI timeseries
-% MotionInf: a nsbj X nscn cell matrix. Each cell >=1 segments of
-%       timepoints without significant motions.
+| 'nY' | total number of functional networks covered by ROIs | |
+|`iG2Y`| a (nY X 1) cell vector| Each cell includes the list of ROI labels of each network.|
+|`ibY`| a (`nY`+1 X 1) vector| Each entry includes the last ROI label of each functional network;  always set ibY(1)=0.|
+
+
+
+
+
 % nY:   # of total networks
 % G2Y:  a (nroi X 1) vector including the network# of each ROI
 % ibY:  a (nY+1 X 1) vector including the last ROI label of each 
@@ -44,6 +56,11 @@ p2data=['./Input/' data '.mat']; % path of data file which must includes followi
 % YLB: a (nY X 1) cell vector including the shorthand label for each network
 % %%%The last 5 variables can be generated from the original data and the
 % atlas-network file (see ./resources)
+
+
+
+#### 1.3.2 (optional step) Run 'st0_ROIreOrg.m' for input variable generations
+
 
 
 
