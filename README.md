@@ -11,13 +11,12 @@ This is a generally applicable MATLAB toolbox, which detects, analyzes, and visu
     * 2.1 [(Step 1) Run 'st1_ParamsSet.m'](#section-2-1)
     * 2.2 [(Step 2) Run 'st2_QPPanalysis.m'](#section-2-2)
         * 2.2.1 -[Prespecified parameters](#section-2-2-1)
-        * 2.2.2 -[Automated QPP analysis](#section-2-2-2)
+        * 2.2.2 -[Automated QPP analysis & Output variables](#section-2-2-2)
     * 2.3 [(Step 3) Run 'st3_QPPFCvisual.m'](#section-2-3)
         * 2.3.1 -[Prespecified parameters](#section-2-3-1)
         * 2.3.2 -[Generated figures](#section-2-3-2)
-
-* 4 - [Output Files](#section-4)
-* 5 - [References](#section-4)
+* 3 - [Output Files](#section-4)
+* 4 - [References](#section-4)
 
 
 <a name="section-1"></a>
@@ -80,16 +79,19 @@ The following analytical procedures will be executed.
 This is for visualizing QPP related results given the outputs of step 2. 
 <a name="section-2-3-1"></a>
 #### 2.3.1 Prespecified parameters       
-In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), the following two additional parameters also need to be prespecified at the beginning of this script.
-|      Purpose     |  Variable name  | Description | Note   | 
-|------------------|-----------------|-------------|--------|
-| 		|`dataext`   | parameter filename |The parameter .mat file generated from step 1, which has the filename Param_`dataext`.mat |
-|  Data concatenation method |`runM`     | control the way to concatenate the data| If `runM`=1, concatenate all D{i,j} as a whole group and detect group QPP; if `runM`=2, concatenate all D{i,:} and detect QPP from all scans of each subject; if `runM`=3, concatenate all D{:,:} and detect QPP from all subjects of each scan.|
-| QPP detection	method|`rbstScrn`     | control for fast QPP dectection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selectes a limited number of starting points which was used in XXXX, whereas the robust detection selects all possible starting points which was used in (XXX).|
-
+In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), the following three additional parameters can also be prespecified at the beginning of this script.
+|     Variable name  | Description | Purpose   | 
+|-----------------|-------------|--------|
+|`Pselect`   | a vector of integers | to specify the QPP #s to be visualized |
+| `Gselect`   | a vector of integers | to specify the group# (e.g. which scans/subjects) to be compared; if `runM`=1, by default `Gselect`=1. |
+| `bin`| a decimal | to specify bin size of the histogram of sliding correlation timecouses|
 <a name="section-2-3-2"></a>
 #### 2.3.2 Generated figures
-The following analytical procedures will be executed.
+| Figure index  | Description |
+|---------------|-------------|
+| 1 |
+| 2 |
+| 3 |
 
 <a name="section-3"></a>
 ## 3. Output File Structure(./Output/)
