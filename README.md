@@ -74,7 +74,7 @@ The following three parameters need to be prespecified at the beginning of this 
 <a name="section-2-1-1"></a>
 #### 2.2.2 Automated QPP analysis & Final key output variables
 For the QPP analysis, follwoing analytical procedures will be executed: 1) QPP1 detection, 2) phase adjustment, 3) QPP2-5 detection from the residuals of QPP1, 4) reverse phase QPP detection, and 5) Functional connectivity computation after QPP regression. The key output variables are:
-| Variable   | Description | Note   | 
+| Output variable   | Description | Note   | 
 |----------------|-------------|-------------|
 |`QPPs`| a (nP X 2) cell matrix| The 1st column includes the 2D template of QPP1-QPP`nP`, and the 2nd column includes the corresponding reverse phase QPPs.|
 |`Cs`| a (nP X 1) cell vector| Each cell includes the QPP sliding correlation timecourse.|
