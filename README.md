@@ -29,6 +29,11 @@ This is a [Matlab](https://www.mathworks.com/) (The Mathworks Inc., Natick, MA, 
 The input file `data`.mat is included in ./input/ folder whereas `data` is the input filename. Five distinct input samples are enclosed in the current ./input/, which includes 1) a visual stimuated human brain dataset, 2) a Human Connectome Project resting human brain dataset, 3) a resting rat brain dataset, and 4) a resting mice brain dataset.
 #### 1.2.1 Input variables    
 The input `data`.mat must include the following four variables.
+
+|\2. horizontal merged cell |
+|/2. vertical merged cell | data1 |
+|data2|
+
 | Variable name | Description | Note   | 
 |--------|--------|-------------|
 |`D0`   | a (nsbj X nscn) cell matrix |Each cell has a nroi X ntimepoints matrix of EPI timeseries. |
