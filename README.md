@@ -48,6 +48,15 @@ The main pipeline consists 3 steps. The 1st step (st1_ParamSt.m) sets up the int
 <a name="section-2-1"></a>
 ### 2.1 (Step 1) Run 'st1_ParamsSet.m'
 Following variables will be predefined, and a parameter file Params_`data`\_`ext`.mat will be generated after running this script.
+| Cell1| Cell2 | Cell3 |
+|------|-------|-------|
+| merge right ||       |
+| merge|       |       |
+| below|^      |^      |
+| merge both  || value1|
+|^            || value2|
+
+
 <table>
     <thead> <tr> <th>Purpose</th> <th>Variable name</th> <th>Description</th> <th>Note</th> </tr> </thead>
     <tbody> <tr> <td rowspan=2>Filepath </td> <td>`data`</td>   <td>the input filename</td>   <td>input should have the filename `data`.mat</td> </tr>
