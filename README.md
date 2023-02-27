@@ -79,7 +79,7 @@ The analytical procedures to be executed and corresponding outputs to be generat
 ### 2.3 (Step 3) Run 'st3_QPPFCvisual.m'
 <a name="section-2-3-1"></a>
 #### 2.3.1 Prespecified parameters       
-In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), the following three additional parameters can also be prespecified at the beginning of this script.
+In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), three additional parameters can be prespecified at the beginning of this script.
 |     Variable name  | Description | Purpose   | 
 |-----------------|-------------|--------|
 |`Pselect`   | a vector of integers | to specify the QPP #s to be visualized |
@@ -101,19 +101,24 @@ In figures 1, 2, and 6, ROIs are reorganized based on networks.
 
 <a name="section-3"></a>
 ## 3. Output Files(./Output/)
+Examples of output files are listed.
+
       ./Output    
-         ├── GrpQPP                  # (runM=1) 
-         │   ├── benchmarks          # Load and stress tests
-         │   │      ├── integration         # End-to-end, integration tests (alternatively `e2e`)
-         |   │      ├── integration         # End-to-end, integration tests (alternatively `e2e`)
-         │   │      └── ...                # Unit tests
-         │   ├── benchmarks          # Load and stress tests
+         ├── GrpQPP                                   # Concatenated all EPI data as a whole group (`runM`=1) 
+         │   ├── interm                               # Intermediate output files
+         │   │      ├── `dataext`_Grp1_rbst1_qpp1.mat # QPP1 detected with robust detection 
+         |   │      ├── `dataext`_Grp1_rbst1_qpp2.mat # QPP2 detected with robust detection 
+         |   │      ├── `dataext`_Grp1_rbst0_qpp1.mat # QPP1 detected with fast detection 
+         |   │      ├── `dataext`_Grp1_rbst0_qpp2.mat # QPP2 detected with fast detection 
+         |   │      ├── `dataext`_Grp1_rbst0_qpp3.mat # QPP3 detected with fast detection 
+         │   │      └── ...                           
+         │   ├── `dataext`_Grp1_rbst1_QPPs.mat        # Final output of key output variables for QPP1-QPP2 with robust detection (`rbstScrn`=1)
+         │   ├── `dataext`_Grp1_rbst1_QPPs.mat        # Final output of key output variables for QPP1-QPP2 with robust detection (`rbstScrn`=1)
          │   ├── benchmarks          # Load and stress tests  
          │   └── ...               # Unit tests
          │
          └──
-    │   
-    └── ...
+
 
 <a name="section-5"></a>
 ## 4. References
