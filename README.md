@@ -72,8 +72,67 @@ The following three parameters need to be prespecified at the beginning of this 
 | QPP detection	method|`rbstScrn`     | control for fast QPP dectection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selectes a limited number of starting points which was used in (Abbas, Bassil, et al., 2019; Abbas, Belloy, et al., 2019; Belloy et al., 2018; Majeed et al., 2011; Raut et al., 2021; Yousefi et al., 2018), whereas the robust detection selects all possible starting points which was used in (Maltbie et al., 2022; Xu et al., 2023; Yousefi & Keilholz, 2021).|
 
 <a name="section-2-1-1"></a>
-#### 2.2.2 Automated QPP analysis & Output variables
+#### 2.2.2 Automated QPP analysis & Key output variables
 The analytical procedures to be executed and corresponding outputs to be generated are listed below.
+#####2.3.2.a QPP detection (QPPf1detectRbst.m)
+   QPP: QPP templateTMX,C,MET,ITER,TMPL,TMXTMPL,CTMPL,SCMX
+
+
+|      Procedure    |  Matlab function  | Key outputs | Note   | 
+|------------------|-----------------|-------------|--------|
+|  QPP detection  		| QPPf1detectRbst   | Selected QPP template (QPP), the sliding correlation timecourse (C) and its maxima (SCMX) and the timepoint of each maxima (TMX, also considered as the QPP occurring time). QPP templates generated from all possible starting points (TMPL) and the correspoding sliding correlation timecourses (CTMPL) and QPP occuring times (TMXTMPL).| |
+| Revserse phase QPP detection | QPPf1detectN | The reverse phase QPP (QPPn) and its occuring time (TMXn)|
+| QPP phase adjustment | QPPf2phadj |
+
+        fprintf([isip 'f2phadj\n']);
+        [QPPa,TMXa,Ca,METa,SDa,SD,flga,cT1Tj,nsim]=(QPP,TMPL,SCMX,TMXTMPL,CTMPL, ...
+                        paramQPPf2.tsh(ip), ...
+                        paramQPPf2.PLc{ip}, ...
+                        paramQPPf2.cthph, ...
+                        paramQPPf2.sdph{ip}, ...
+                        paramQPPf2.s,tres);
+
+        fprintf([isip 'f3xresid\n']);
+        if ip~=1
+            QPP0=QPP; QPPa0=QPPa; C0=C; SD0=SD; SD=nan; SDa0=SDa; SDa=nan;
+            [QPP,C,MET(1),QPPa,Ca,METa(:,1)]=QPPf3xresidRbst...
+                (D,ntlist, TMX,TMXa,paramQPPf1.PLh{ip},paramQPPf2.PLc{ip},nscng,ssg(ip));
+        end
+        
+        QPPs{ip,1}=QPP; QPPs{ip,2}=QPPn; Cs(ip,:)=C;
+        fprintf([isip 'f4regscn\n']);
+        for ip2=1:ip-1, if cellfun(@isempty,(QPPs(ip2,1)))
+            fl=load(p2S{ig,ip2},'QPP','QPPn','C','TMX','MET','TMXn','METn','QPPa','Ca','TMXa','METa','D','Dr','Cr','FCr'); 
+            QPPs{ip2,1}=fl.QPP; QPPs{ip2,2}=fl.QPPn; 
+            TMXs{ip2,1}=fl.TMX; TMXs{ip2,2}=fl.TMXn; 
+            METs{ip2,1}=fl.MET; METs{ip2,2}=fl.METn; 
+            Cs(ip2,:)=fl.C; QPPas{ip2,1}=fl.QPPa; 
+            TMXas{ip2,1}=fl.TMXa; METas{ip2,1}=fl.METa; Cas{ip2}=fl.Ca;
+            Ds{ip2,1}=fl.D; Drs{ip2,1}=fl.Dr; Crs{ip2}=fl.Cr; FCrs{ip2,1}=fl.FCr;
+        end; end
+        [Dr,Cr,FCr]=QPPf4regscnRbst(D,ntlist, QPPs(1:ip,1),Cs(1:ip,:),nscng,PL(ip), ...
+                                    paramQPPf4.PLc{ip},...
+                                    paramQPPf4.iNetL, ...
+                                    paramQPPf4.iROI2NetC, ...
+                                    paramQPPf4.fz);                                                               
+
+        save(p2S{ig,ip},'D','QPP','TMX','C','MET','ITER','TMPL','TMXTMPL',...
+            'CTMPL','SCMX','QPPn', 'TMXn', 'METn', ...
+            'QPPa','TMXa','Ca','METa','SDa','SD','flga',...
+            'cT1Tj','nsim','Dr','Cr','FCr', ...
+            'ntlist','ITP','PL','ssg','tres',...
+            'paramQPPf1','paramQPPf2','paramQPPf4','-v7.3'); 
+        
+        
+        TMXs{ip,1}=TMX; TMXs{ip,2}=TMXn; METs{ip,1}=MET; METs{ip,2}=METn; 
+        QPPas{ip,1}=QPPa; TMXas{ip,1}=TMXa; METas{ip,1}=METa; Cas{ip}=Ca;
+        Ds{ip,1}=D; Drs{ip,1}=Dr; Crs{ip}=Cr; FCrs{ip,1}=FCr;
+        
+
+
+
+
+
 <a name="section-2-3"></a>
 ### 2.3 (Step 3) Run 'st3_QPPFCvisual.m'
 <a name="section-2-3-1"></a>
