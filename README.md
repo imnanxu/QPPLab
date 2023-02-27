@@ -51,7 +51,7 @@ Following variables will be predefined, and a parameter file Params_`data`\_`ext
 <table>
     <thead> <tr> <th>Purpose</th> <th>Variable name</th> <th>Description</th> <th>Note</th> </tr> </thead>
     <tbody> <tr> <td rowspan=2>Filepath </td> <td>`data`</td>   <td>the input filename</td>   <td>input should have the filename `data`.mat</td> </tr>
-                                         <tr> <td>`ext`</td>    <td>filename extension for the parameter file</td>   <td>parameter filename will be  Params_`data`\_`ext`.mat</td> </tr>             
+                                         <tr> <td>`ext`</td>    <td>filename extension for parameter file</td>   <td>parameter filename will be  Params_`data`\_`ext`.mat</td> </tr>             
             <tr><td rowspan=2>QPP global parameters</td> <td>`nP`</td> <td>total # of QPPs to detect (nP<=5)</td>   <td>If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.</td> </tr>
                                          <tr> <td>`PL`</td><td>a (nP X 1) vector of QPP window length </td>   <td>~20s for humans (e.g., PL(ip)=20/TR)</td> </tr>
     </tbody>
@@ -59,7 +59,7 @@ Following variables will be predefined, and a parameter file Params_`data`\_`ext
 
 |      Purpose     |  Variable name | Description | Note   | 
 |------------------|-----------------|--------|-------------|
-|  Filepath  		|`data`   | the input filename |The input should has the filename `data`.mat |
+|/2.  Filepath  		|`data`   | the input filename |The input should has the filename `data`.mat |
 |                  	|`ext`    | filename extension for the parameter file| The parameter filename will be  Params_`data`\_`ext`.mat |
 |  QPP global parameters|`nP`     | total # of QPPs to detect (nP<=5)| If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.|
 |		   	|`PL`     | a (nP X 1) vector of QPP window length | ~20s for humans (e.g., PL(ip)=20/TR), |
