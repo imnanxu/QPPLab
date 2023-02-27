@@ -48,22 +48,12 @@ The main pipeline consists 3 steps. The 1st step (st1_ParamSt.m) sets up the int
 <a name="section-2-1"></a>
 ### 2.1 (Step 1) Run 'st1_ParamsSet.m'
 Following variables will be predefined, and a parameter file Params_`data`\_`ext`.mat will be generated after running this script.
-| Cell1| Cell2 | Cell3 |
-|------|-------|-------|
-| merge right ||       |
-| merge|       |       |
-| below|^      |^      |
-| merge both  || value1|
-|^            || value2|
-
-
 <table>
     <thead> <tr> <th>Purpose</th> <th>Variable name</th> <th>Description</th> <th>Note</th> </tr> </thead>
     <tbody> <tr> <td rowspan=2>Filepath </td> <td>`data`</td>   <td>the input filename</td>   <td>input should have the filename `data`.mat</td> </tr>
-                                         <tr> <td>`ext`</td>    <td>filename extension for the parameter file</td>   <td>parameter filename will be  Params_`data`\_`ext`.mat</td> </tr>
-             
-            <tr><td rowspan=2>QPP global parameters</td> <td>`nP`</td>   <td>total # of QPPs to detect (nP<=5)</td>   <td>If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.</td> </tr>
-                                         <tr> <td>`PL`</td>    <td>a (nP X 1) vector of QPP window length </td>   <td>~20s for humans (e.g., PL(ip)=20/TR)</td> </tr>
+                                         <tr> <td>`ext`</td>    <td>filename extension for the parameter file</td>   <td>parameter filename will be  Params_`data`\_`ext`.mat</td> </tr>             
+            <tr><td rowspan=2>QPP global parameters</td> <td>`nP`</td> <td>total # of QPPs to detect (nP<=5)</td>   <td>If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.</td> </tr>
+                                         <tr> <td>`PL`</td><td>a (nP X 1) vector of QPP window length </td>   <td>~20s for humans (e.g., PL(ip)=20/TR)</td> </tr>
     </tbody>
 </table>
 
