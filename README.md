@@ -73,12 +73,7 @@ The following three parameters need to be prespecified at the beginning of this 
 
 <a name="section-2-1-1"></a>
 #### 2.2.2 Automated QPP analysis & Key output variables
-For the QPP analysis, follwoing analytical procedures will be executed:   
-      QPP#1 detection (QPPf1detectRbst.m)
-      QPP phase adjustment (QPPf2phadj.m)
-      QPP#2-#5 detected from the residuals of QPP#1 (QPPf3xresidRbst.m)      
-      Reverse phase QPP detection (QPPf1detectN.m)
-      QPP regression for functional connectivity analysis (QPPf4regscnRbst.m)
+For the QPP analysis, follwoing analytical procedures will be executed: 1) QPP1 detection, 2) phase adjustment, 3) QPP2-5 detection from the residuals of QPP1, 4) reverse phase QPP detection, and 5) Functional connectivity computation after QPP regression.
             
         TMXs{ip,1}=TMX; TMXs{ip,2}=TMXn; METs{ip,1}=MET; METs{ip,2}=METn; 
         QPPas{ip,1}=QPPa; TMXas{ip,1}=TMXa; METas{ip,1}=METa; Cas{ip}=Ca;
