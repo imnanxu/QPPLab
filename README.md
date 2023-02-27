@@ -51,8 +51,7 @@ Following variables will be predefined, and a parameter file Params_`data`\_`ext
 |      Category     |  Variable name | Description | Note   | 
 |------------------|-----------------|--------|-------------|
 |  Filepath  		|`data`   | the input filename |The input should has the filename `data`.mat |
-|                  	|`ext`    | filename extension for the parameter file| The parameter filename will be  Params_`data`\_`ext`.mat |
-|------------------|-----------------|--------|-------------|
+|                	|`ext`    | the parameter filename extension | The parameter filename will be  Params_`data`\_`ext`.mat |
 |  QPP global parameters|`nP`     | total # of QPPs to detect (nP<=5)| If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc.|
 |		   	|`PL`     | a (nP X 1) vector of QPP window length | ~20s for humans (e.g., PL(ip)=20/TR), |
 |  QPP detection	|`cth13` & `cth34`     | a 2D vector of correlation threshold for QPP1-QPP3 (`cth13`) & for QPP4-QPP5 (`cth45`)| If you do not need to detect QPP4-QPP5, please assign `cth34` a random number (e.g., `cth34`=[0, 0]).|
