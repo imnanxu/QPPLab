@@ -76,14 +76,14 @@ The following three parameters need to be prespecified at the beginning of this 
 For the QPP analysis, follwoing analytical procedures will be executed: 1) QPP1 detection, 2) phase adjustment, 3) QPP2-5 detection from the residuals of QPP1, 4) reverse phase QPP detection, and 5) Functional connectivity computation after QPP regression. The key output variables are:
 | Variable   | Description | Note   | 
 |----------------|-------------|-------------|
-|QPPs| a nP X 2 cell matrix| The 1st column includes the 2D template of QPP1-QPP`nP`, and the 2nd column includes the corresponding reverse phase QPPs.|
-|Cs| a nP X 1 cell vector| Each cell includes the QPP sliding correlation timecourse.|
-|TMXs| a nP X 2 cell matrix| The occuring time of the QPP (1st column) and the reverse phase QPP (2nd column).|
-|METs| a nP X 2 cell matrix| The meta data of maxima and minima of the QPP sliding timecourse.|
-|Ds| a nP X 1 cell vector| Each cell includes original EPI timeseries.|
-|Drs| a nP X 1 cell vector| Each cell includes the EPI timeseries after QPP regression.|
-|Crs| a nP X 1 cell vector| Each cell includes the QPP sliding correlation timecourses after QPP regression.|
-|FCrs| a nP X 1 cell vector| Each cell includes the functional connectivity map after the QPP regression.|
+|QPPs| a (nP X 2) cell matrix| The 1st column includes the 2D template of QPP1-QPP`nP`, and the 2nd column includes the corresponding reverse phase QPPs.|
+|Cs| a (nP X 1) cell vector| Each cell includes the QPP sliding correlation timecourse.|
+|TMXs| a (nP X 2) cell matrix| The occuring time of the QPP (1st column) and the reverse phase QPP (2nd column).|
+|METs| a (nP X 2) cell matrix| The meta data of maxima and minima of the QPP sliding timecourse.|
+|Ds| a (nP X 1) cell vector| Each cell includes original EPI timeseries.|
+|Drs| a (nP X 1) cell vector| Each cell includes the EPI timeseries after QPP regression.|
+|Crs| a (nP X 1) cell vector| Each cell includes the QPP sliding correlation timecourses after QPP regression.|
+|FCrs| a (nP X 1) cell vector| Each cell includes the functional connectivity map after the QPP regression.|
 
 Note: Similar to detected QPPs, the phase-adjusted QPP and related variables are saved in the following cell matrices, QPPas, TMXas, METas, Cas. All these parameters are included in the file `dataext`\_`*`_QPPs.mat, where `*` depends on the prespesified parameters.  
         
