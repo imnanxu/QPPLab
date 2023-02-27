@@ -104,20 +104,42 @@ In figures 1, 2, and 6, ROIs are reorganized based on networks.
 Examples of output files are listed.
 
       ./Output    
-         ├── GrpQPP                                   # Concatenated all EPI data as a whole group (`runM`=1) 
+         ├── GrpQPP                                   # Concatenated all EPI scans of all subjects as a whole group (`runM`=1) 
          │   ├── interm                               # Intermediate output files
          │   │      ├── `dataext`_Grp1_rbst1_qpp1.mat # QPP1 detected with robust detection 
          |   │      ├── `dataext`_Grp1_rbst1_qpp2.mat # QPP2 detected with robust detection 
+         |   │      ├── `dataext`_Grp1_rbst1_qpp3.mat # QPP3 detected with robust detection 
          |   │      ├── `dataext`_Grp1_rbst0_qpp1.mat # QPP1 detected with fast detection 
          |   │      ├── `dataext`_Grp1_rbst0_qpp2.mat # QPP2 detected with fast detection 
          |   │      ├── `dataext`_Grp1_rbst0_qpp3.mat # QPP3 detected with fast detection 
+         |   │      ├── `dataext`_Grp1_rbst0_qpp4.mat # QPP4 detected with fast detection 
+         |   │      ├── `dataext`_Grp1_rbst0_qpp5.mat # QPP5 detected with fast detection          
          │   │      └── ...                           
-         │   ├── `dataext`_Grp1_rbst1_QPPs.mat        # Final output of key output variables for QPP1-QPP2 with robust detection (`rbstScrn`=1)
-         │   ├── `dataext`_Grp1_rbst1_QPPs.mat        # Final output of key output variables for QPP1-QPP2 with robust detection (`rbstScrn`=1)
-         │   ├── benchmarks          # Load and stress tests  
-         │   └── ...               # Unit tests
+         │   ├── `dataext`_Grp1_rbst1_QPPs.mat        # Key output variables for QPP1-QPP3 with robust detection (`rbstScrn`=1)
+         │   ├── `dataext`_Grp1_rbst0_QPPs.mat        # Key output variables for QPP1-QPP5 with fast detection (`rbstScrn`=0)       
+         │   └── ...   
          │
-         └──
+         ├── SbjQPP                                   # Concatenated all EPI scans of each subject as a whole group (`runM`=2) 
+         │   ├── interm                               # Intermediate output files
+         │   │      ├── `dataext`_Sbj1_rbst1_qpp1.mat # QPP1 detected with robust detection for subject 1
+         |   │      ├── `dataext`_Sbj1_rbst1_qpp2.mat # QPP2 detected with robust detection for subject 1          
+         |   │      ├── `dataext`_Sbj2_rbst1_qpp1.mat # QPP1 detected with robust detection for subject 2   
+         |   │      ├── `dataext`_Sbj2_rbst1_qpp2.mat # QPP2 detected with robust detection for subject 2            
+         │   │      └── ...                           
+         │   ├── `dataext`_Sbj1_rbst1_QPPs.mat        # Key output variables for QPP1-QPP2 of subject 1 with robust detection (`rbstScrn`=1)
+         │   ├── `dataext`_Sbj2_rbst1_QPPs.mat        # Key output variables for QPP1-QPP2 of subject 2 with robust detection (`rbstScrn`=1)  
+         │   └── ...               
+         │
+         └── ScnQPP                                   # Concatenated all subjects' EPI data of each scan as a whole group (`runM`=3) 
+             ├── interm                               # Intermediate output files
+             │      ├── `dataext`_Scn1_rbst0_qpp1.mat # QPP1 detected with fast detection for the 1st scan
+             │      ├── `dataext`_Scn1_rbst0_qpp2.mat # QPP2 detected with fast detection for the 1st scan         
+             │      ├── `dataext`_Scn2_rbst0_qpp1.mat # QPP1 detected with fast detection for the 2nd scan    
+             │      ├── `dataext`_Scn2_rbst0_qpp2.mat # QPP2 detected with fast detection for the 2nd scan           
+             │      └── ...                           
+             ├── `dataext`_Sbj1_rbst0_QPPs.mat        # Key output variables for QPP1-QPP2 of the 1s scan with fast detection (`rbstScrn`=0)
+             ├── `dataext`_Sbj2_rbst0_QPPs.mat        # Key output variables for QPP1-QPP2 of the 2nd scan with fast detection (`rbstScrn`=0)  
+             └── ...
 
 
 <a name="section-5"></a>
