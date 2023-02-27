@@ -65,7 +65,7 @@ Following variables will be predefined, and a parameter file Params_`data`\_`ext
 <a name="section-2-1-1"></a>
 #### 2.2.1 Prespecified parameters       
 The following three parameters need to be prespecified at the beginning of this script.
-|      Purpose     |  Variable name  | Description | Note   | 
+|      Category    |  Variable name  | Description | Note   | 
 |------------------|-----------------|-------------|--------|
 |  Filepath  		|`dataext`   | parameter filename |The parameter .mat file generated from step 1, which has the filename Param_`dataext`.mat |
 |  Data concatenation method |`runM`     | control the way to concatenate the data| If `runM`=1, concatenate all D{i,j} as a whole group and detect group QPP; if `runM`=2, concatenate all D{i,:} and detect QPP from all scans of each subject; if `runM`=3, concatenate all D{:,:} and detect QPP from all subjects of each scan.|
