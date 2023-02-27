@@ -69,7 +69,7 @@ The following three parameters need to be prespecified at the beginning of this 
 |------------------|-----------------|-------------|--------|
 |  Filepath  		|`dataext`   | parameter filename |The parameter .mat file generated from step 1, which has the filename Param_`dataext`.mat |
 |  Data concatenation method |`runM`     | control the way to concatenate the data| If `runM`=1, concatenate all D{i,j} as a whole group and detect group QPP; if `runM`=2, concatenate all D{i,:} and detect QPP from all scans of each subject; if `runM`=3, concatenate all D{:,:} and detect QPP from all subjects of each scan.|
-| QPP detection	method|`rbstScrn`     | control for fast QPP dectection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selectes a limited number of starting points which was used in XXXX, whereas the robust detection selects all possible starting points which was used in (XXX).|
+| QPP detection	method|`rbstScrn`     | control for fast QPP dectection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selectes a limited number of starting points which was used in (Abbas, Bassil, et al., 2019; Abbas, Belloy, et al., 2019; Belloy et al., 2018; Majeed et al., 2011; Raut et al., 2021; Yousefi et al., 2018), whereas the robust detection selects all possible starting points which was used in (Maltbie et al., 2022; Xu et al., 2023; Yousefi & Keilholz, 2021).|
 
 <a name="section-2-1-1"></a>
 #### 2.2.2 Automated QPP analysis & Output variables
@@ -146,29 +146,19 @@ Examples of output files are listed.
 
 <a name="section-5"></a>
 ## 4. References
-Avants, B., Tustison, N. J., & Song, G. (2022). Advanced Normalization Tools: V1.0. The Insight Journal. https://doi.org/10.54294/UVNHIN
+Abbas, A., Bassil, Y., & Keilholz, S. (2019). Quasi-periodic patterns of brain activity in individuals with attention-deficit/hyperactivity disorder. NeuroImage: Clinical, 21, 101653. https://doi.org/10.1016/j.nicl.2019.101653
 
-Barrière, D. A., Magalhães, R., Novais, A., Marques, P., Selingue, E., Geffroy, F., Marques, F., Cerqueira, J., Sousa, J. C., Boumezbeur, F., Bottlaender, M., Jay, T. M., Cachia, A., Sousa, N., & Mériaux, S. (2019). The SIGMA rat brain templates and atlases for multimodal MRI data analysis and visualization. Nature Communications, 10(1), 1–13. https://doi.org/10.1038/s41467-019-13575-7
+Abbas, A., Belloy, M., Kashyap, A., Billings, J., Nezafati, M., Schumacher, E. H., & Keilholz, S. (2019). Quasi-periodic patterns contribute to functional connectivity in the brain. NeuroImage, 191, 193–204. https://doi.org/10.1016/J.NEUROIMAGE.2019.01.076
 
-Chou, N., Wu, J., Bai Bingren, J., Qiu, A., & Chuang, K. H. (2011). Robust automatic rodent brain extraction using 3-D pulse-coupled neural networks (PCNN). IEEE Transactions on Image Processing : A Publication of the IEEE Signal Processing Society, 20(9), 2554–2564. https://doi.org/10.1109/TIP.2011.2126587
+Belloy, M. E., Naeyaert, M., Abbas, A., Shah, D., Vanreusel, V., van Audekerke, J., Keilholz, S. D., Keliris, G. A., van der Linden, A., & Verhoye, M. (2018). Dynamic resting state fMRI analysis in mice reveals a set of Quasi-Periodic Patterns and illustrates their relationship with the global signal. In NeuroImage (Vol. 180, pp. 463–484). Academic Press Inc. https://doi.org/10.1016/j.neuroimage.2018.01.075
 
-Chuang, K.-H., Lee, H.-L., Li, Z., Chang, W.-T., Nasrallah, F. A., Yeow, L. Y., & Singh, K. K. D. /O. R. (2018). Evaluation of nuisance removal for functional MRI of rodent brain. NeuroImage. https://doi.org/10.1016/J.NEUROIMAGE.2018.12.048
+Majeed, W., Magnuson, M., Hasenkamp, W., Schwarb, H., Schumacher, E. H. H. E. H. H., Barsalou, L., & Keilholz, S. D. D. S. D. (2011). Spatiotemporal dynamics of low frequency BOLD fluctuations in rats and humans. Neuroimage, 54(2), 1140–1150. https://doi.org/10.1016/j.neuroimage.2010.08.030
 
-Cox, R. W. (1996). AFNI: Software for analysis and visualization of functional magnetic resonance neuroimages. Computers and Biomedical Research, 29(3), 162–173. https://doi.org/10.1006/cbmr.1996.0014
+Maltbie, E., Yousefi, B., Zhang, X., Kashyap, A., & Keilholz, S. (2022). Comparison of Resting-State Functional MRI Methods for Characterizing Brain Dynamics. Frontiers in Neural Circuits, 16. https://doi.org/10.3389/FNCIR.2022.681544/FULL
 
-Cox, R. W., & Hyde, J. S. (1997). Software tools for analysis and visualization of fMRI data. NMR in Biomedicine, 10(4–5), 171–178. https://doi.org/10.1002/(SICI)1099-1492(199706/08)10:4/5<171::AID-NBM453>3.0.CO;2-L
+Raut, R. v., Snyder, A. Z., Mitra, A., Yellin, D., Fujii, N., Malach, R., & Raichle, M. E. (2021). Global waves synchronize the brain’s functional systems with fluctuating arousal. Science Advances, 7(30). https://doi.org/10.1126/SCIADV.ABF2709/SUPPL_FILE/SCIADV.ABF2709_SM.PDF
 
-Jenkinson, M., Beckmann, C. F., Behrens, T. E. J., Woolrich, M. W., & Smith, S. M. (2012). FSL. NeuroImage, 62(2), 782–790. https://doi.org/10.1016/j.neuroimage.2011.09.015
+Xu, N., Smith, D. M., Jeno, G., Seeburger, D. T., Schumacher, E. H., & Keilholz, S. D. (2023). The interaction between random and systematic visual stimulation and infraslow quasiperiodic spatiotemporal patterns of whole brain activity. BioRxiv, 2022.12.06.519337. https://doi.org/10.1101/2022.12.06.519337
+Yousefi, B., & Keilholz, S. (2021). Propagating patterns of intrinsic activity along macroscale gradients coordinate functional connections across the whole brain. NeuroImage, 231, 117827. https://doi.org/10.1016/j.neuroimage.2021.117827
 
-Lee, H. L., Li, Z., Coulson, E. J., & Chuang, K. H. (2019). Ultrafast fMRI of the rodent brain using simultaneous multi-slice EPI. NeuroImage, 195, 48–58. https://doi.org/10.1016/j.neuroimage.2019.03.045
-
-Lein, E. S., Hawrylycz, M. J., Ao, N., Ayres, M., Bensinger, A., Bernard, A., Boe, A. F., Boguski, M. S., Brockway, K. S., Byrnes, E. J., Chen, L., Chen, L., Chen, T.-M., Chi Chin, M., Chong, J., Crook, B. E., Czaplinska, A., Dang, C. N., Datta, S., … Jones, A. R. (2006). Genome-wide atlas of gene expression in the adult mouse brain. Nature 2006 445:7124, 445(7124), 168–176. https://doi.org/10.1038/nature05453
-
-Pan, W.-J., Thompson, G. J., Magnuson, M. E., Jaeger, D., & Keilholz, S. (2013). Infraslow LFP correlates to resting-state fMRI BOLD signals. Neuroimage, 74(0), 288–297. https://doi.org/10.1016/j.neuroimage.2013.02.035
-
-Thompson, G. J., Pan, W. J., Magnuson, M. E., Jaeger, D., & Keilholz, S. D. (2014). Quasi-periodic patterns (QPP): Large-scale dynamics in resting state fMRI that correlate with local infraslow electrical activity. NeuroImage, 84, 1018–1031. https://doi.org/10.1016/j.neuroimage.2013.09.029
-
-Chen, J. (2022). Tools for NIfTI and ANALYZE image. MATLAB Central File Exchange. https://www.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image
-
-Xu, N., LaGrow, T. J., Anumba, N., Lee, A., Zhang, X., Yousefi, B., Bassil, Y., Clavijo, G. P., Khalilzad Sharghi, V., Maltbie, E., Meyer-Baese, L., Nezafati, M., Pan, W.-J., & Keilholz, S. (2022). Functional Connectivity of the Brain Across Rodents and Humans. Frontiers in Neuroscience, 0, 272. https://doi.org/10.3389/FNINS.2022.816331
-
+Yousefi, B., Shin, J., Schumacher, E. H., & Keilholz, S. D. (2018). Quasi-periodic patterns of intrinsic brain activity in individuals and their relationship to global signal. NeuroImage, 167, 297–308. https://doi.org/10.1016/j.neuroimage.2017.11.043
