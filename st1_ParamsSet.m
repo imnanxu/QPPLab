@@ -1,18 +1,15 @@
 clear; clc;  close all
 %% For saving & reading path-names
-data='HumanVisual'; % the filename of the data file
-data='HCPR3gsr';
+% data='HumanVisual'; % the filename of the data file
+data='HCPR3gsr'; % the filename of the data file
+
 p2data=['./Input/' data '.mat']; % path of data file which must includes following parameters:
 % D0:   a nsbj X nscn cell matrix. Each cell has a nroi X ntimepoints 
 %       matrix of EPI timeseries
 % MotionInf: a nsbj X nscn cell matrix. Each cell >=1 segments of
 %       timepoints without significant motions.
-% nY:   # of total networks
-% G2Y:  a (nroi X 1) vector including the network# of each ROI
-% ibY:  a (nY+1 X 1) vector including the last ROI label of each 
-%       functional network;  always set ibY(1)=0.
-% iG2Y: a (nY X 1) cell vector including the list of ROI labels for each network.
-% YLB: a (nY X 1) cell vector including the shorthand label for each network
+% ROI2Net:  a (nroi X 1) vector including the network index of each ROI
+% NetLB: a (nnet X 1) cell vector including the label for each network
 
 ext=['test']; % filename extension for the parameter file
 p2param=['Params_' data '_' ext]; % parameter filename
@@ -26,16 +23,13 @@ nP=5; PL=[30; 30; 30; 29; 29];
 
 %% For QPP detection: QPPf1detectRbs.m
 % cth13 & cth45: correlation threshold for QPP1-QPP3 & for QPP4-QPP5;
-% fd: 1 or 0
-%    1 -fast QPP detection; selected limited number of starting points
-%    0 -robust detection; select all possible starting points
-cth13=[0.1, 0.2]; cth45=[0.1, 0.2]; fd=1; 
+cth13=[0.1, 0.2]; cth45=[0.1, 0.2];
 
 %% For QPP phase adjustment: QPPf2phadj.m
 % cthph: similarity threshold when phase-adjusting (phadj) a QPP
 % s: 1 or 0
 %    1 -strict phase adjustment
-%    0 -relaxed phase adjustment
+%    0 -relaxed phase adjustmente
 cthph=0.88; s=0; 
 
 % Reference parcel(s) ID for QPP phase adjustment: 

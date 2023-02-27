@@ -12,9 +12,9 @@ runM=1; % QPP running method
 rbstScrn=1; % control for robust QPP detection
 %rbstScrn:  1 - scan all possible initial segments for robust QPP detection
 %           0 - scan randomly slected initial segments for fast QPP detection
+Pselect=[1,2,3,4]; %select QPP#s to be visualized
+Gselect=[1,2,3];  %select groups to be compared
 bin=0.08;
-Pselect=[1, 2, 4]; %select QPP#s to be visualized
-Gselect=[1 2];
 %% Automatically load data & other hidden parameters
 fprintf('QPP & FC Visualizations...\n'); 
 addpath(p2qppf);
@@ -46,20 +46,21 @@ ct=0; nPs=length(Pselect);
 for ip=Pselect 
     for ig=Gselect
         load(p2S0{ig},'QPPs','TMXs','Cs','METs', 'QPPas', 'TMXas', 'METas', 'Cas', ...
-        'Ds', 'Drs', 'Crs', 'FCrs','nY', 'G2Y', 'ibY','iG2Y','YLB', ...
+        'Ds', 'Drs', 'Crs', 'FCrs', 'ROI2Net', 'iROI2Net','NetLB', ...
         'ntlist','ITP','PL','ssg','tres',...        
         'cth13','cth45','paramQPPf2','paramQPPf4');      
  
         ct=ct+1;
         f1=figure(1); %qpps
-        subplot(nPs,Ng,ct); imagesc(QPPs{ip,1},[-1 1]); 
-        plotNets(YLB,ibY,PL(ip),0); colorbar
+        subplot(nPs,Ng,ct); imagesc(QPPs{ip,1}(iROI2Net,:),[-1 1]);        
+        plotNets(ROI2Net,NetLB, PL(ip),0); colorbar
+%         plotNets(YLB,ibY,PL(ip),0);        
         if ig==1, ylabel(['QPP #' num2str(ip)]); end
         if ip==1, title([indn num2str(ig)],'FontSize', 8); end
 
         f2=figure(2); %reverse qpps
-        subplot(nPs,Ng,ct); imagesc(QPPs{ip,2},[-1 1]); 
-        plotNets(YLB,ibY,PL(ip),0); colorbar
+        subplot(nPs,Ng,ct); imagesc(QPPs{ip,2}(iROI2Net,:),[-1 1]); 
+        plotNets(ROI2Net,NetLB, PL(ip),0); colorbar
         if ig==1, ylabel(['rph QPP #' num2str(ip)]); end
         if ip==1, title(['reverse phase (rph) QPP: ' indn num2str(ig)],'FontSize', 8); end
               
@@ -92,8 +93,8 @@ for ip=Pselect
         if ip==1, title(['sliding corr histogram: ' indn num2str(ig)],'FontSize', 8); end
     
         f7=figure(6); %FC matrix before and after qpp regression     
-        subplot(nPs,Ng,ct); FC=corr(Ds{ip}'); FC1=triu(FC,0); FC2=tril(FCrs{ip},-1);
-        imagesc(FC1+FC2,[-1 1]); colorbar; plotNets(YLB,ibY,PL(ip),1); 
+        subplot(nPs,Ng,ct); FC=corr(Ds{ip}(iROI2Net,:)'); FC1=triu(FC,0); FC2=tril(FCrs{ip},-1);
+        imagesc(FC1+FC2,[-1 1]); colorbar; plotNets(ROI2Net,NetLB, PL(ip),1);        
         if ig==1,  ylabel(['QPP #'  num2str(ip)],'FontSize', 8); end
         if ip==1, title({['FC before (up) & after (low)'], ['qpp reg: ' indn num2str(ig)]},'FontSize', 8); end
     
