@@ -115,7 +115,7 @@ In figures 1, 2, and 6, ROIs are reorganized based on networks.
 ## 3. Output Files(./Output/)
 Examples of output files are listed.
 
-         ./Output    
+        ./Output    
          ├── GrpQPP                                   # Concatenated all EPI scans of all subjects as a whole group (`runM`=1) 
          │   ├── interm                               # Intermediate output files
          │   │      ├── `dataext`_Grp1_rbst1_qpp1.mat # QPP1 detected with robust detection 
