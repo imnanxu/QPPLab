@@ -79,7 +79,7 @@ For the QPP analysis, follwoing analytical procedures will be executed: 1) QPP1 
 |`QPPs`| a (nP X 2) cell matrix| The 1st column includes the 2D template of QPP1-QPP`nP`, and the 2nd column includes the corresponding reverse phase QPPs.|
 |`Cs`| a (nP X 1) cell vector| Each cell includes the QPP sliding correlation timecourse.|
 |`TMXs`| a (nP X 2) cell matrix| The occuring time of the QPP (1st column) and the reverse phase QPP (2nd column).|
-|`METs`| a (nP X 2) cell matrix| The meta data of maxima and minima of the QPP sliding timecourse.|
+|`METs`| a (nP X 2) cell matrix| The metadata of maxima and minima of the QPP sliding timecourse.|
 |`Ds`| a (nP X 1) cell vector| Each cell includes original EPI timeseries.|
 |`Drs`| a (nP X 1) cell vector| Each cell includes the EPI timeseries after QPP regression.|
 |`Crs`| a (nP X 1) cell vector| Each cell includes the QPP sliding correlation timecourses after QPP regression.|
