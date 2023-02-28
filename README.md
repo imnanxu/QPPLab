@@ -1,4 +1,4 @@
-# A generalized toolbox for QPP detection, analyzsis, and visulization for rodent or human brains
+# A generalized toolbox for QPP detection, analyzsis, and visulization for rodent and human brains
 This is a generally applicable MATLAB toolbox, which detects, analyzes, and visualizes up to 5 QPPs and QPP regressed functional connectivity maps from fMRI timeseries of the brain across rodents and humans. This toolbox is a significant modification and extension of [QPP_Scripts_v0620](https://github.com/GT-EmoryMINDlab/QPP_Scripts_v0620), and can analyze QPPs for resting brain and for task-evoked/stimulated brains across species.
 
 # Table of Contents
