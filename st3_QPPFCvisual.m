@@ -33,16 +33,17 @@ elseif runM==3
     indn='Scn';
 else, error('Unidenfied value for runM.\n')
 end
-p2S=cell(Ng,nP); p2S0=cell(Ng,1); % pth2 save SbjQPPs
-for ig=1:Ng % gp id
-    for ip=1:nP % QPP id
+nPs=length(Pselect);
+p2S=cell(Ng,nPs); p2S0=cell(Ng,1); % pth2 save SbjQPPs
+for ig=Gselect % gp id
+    for ip=Pselect % QPP id
         p2S{ig,ip}=[a dataext '_' indn num2str(ig) '_rbst' num2str(rbstScrn) '_qpp' num2str(ip)];
     end
     p2S0{ig}=[a0 dataext '_' indn num2str(ig) '_rbst' num2str(rbstScrn) '_QPPs'];
      
 end
 %% Visualization
-ct=0; nPs=length(Pselect);
+ct=0; 
 for ip=Pselect 
     for ig=Gselect
         load(p2S0{ig},'QPPs','TMXs','Cs','METs', 'QPPas', 'TMXas', 'METas', 'Cas', ...
