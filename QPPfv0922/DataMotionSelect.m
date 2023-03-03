@@ -19,6 +19,7 @@ for isbj=1:nsbj
         elseif size(timeSelect,2)>2            
             scan_ct=scan_ct+1;
             Dtmp=Dtmp(:,timeSelect); nt=size(Dtmp,2); 
+            Dtmp=zscore(Dtmp,[],2);
             Ddm=cat(2,Ddm,Dtmp); ntlist=[ntlist;nt];      
 
         elseif size(timeSelect,2)==2 % two segments
@@ -26,6 +27,7 @@ for isbj=1:nsbj
                 tmp=timeSelect{seg}; 
                 Dtmp1=Dtmp(:,tmp); scan_ct=scan_ct+1;
                 nt=size(Dtmp1,2); ntlist=[ntlist;nt];
+                Dtmp1=zscore(Dtmp1,[],2);
                 Ddm=cat(2,Ddm,Dtmp1); 
             end
         end        

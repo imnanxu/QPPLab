@@ -19,8 +19,9 @@ end
 
 ITP1=[];
 for i=1:length(ntlist)
-   nt=ntlist(i); esg=nt-PL+1;  
+   nt=ntlist(i);  nT=sum(ntlist(1:i));
+   esg=nt-PL+1;  a=nT-nt+(ssg:esg);
    nt2PL=round(nt/PL); nITPps=round(nt2PL./t); % #initial-segments/scan    
-   a=(i-1)*nt+(ssg:esg); a=a(randperm(length(a))); a=a(1:nITPps); 
+   a=a(randperm(length(a))); a=a(1:nITPps); 
    ITP1=[ITP1; single(a')];     
 end
