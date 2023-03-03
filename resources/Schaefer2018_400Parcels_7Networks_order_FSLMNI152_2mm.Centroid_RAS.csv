@@ -1,4 +1,4 @@
-ROI Label,R,A,S,Hemisphere,Network,Subregions,SubregionID
+ROI_Label,R,A,S,Hemisphere,Network,Subregions,SubregionID
 1,-32,-42,-20,LH,Vis,,1
 2,-30,-32,-18,LH,Vis,,2
 3,-36,-62,-16,LH,Vis,,3
