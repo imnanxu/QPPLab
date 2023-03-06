@@ -69,7 +69,7 @@ The following three parameters need to be prespecified at the beginning of this 
 |------------------|-----------------|-------------|--------|
 |  Filepath  		|`dataext`   | parameter filename |The parameter .mat file generated from step 1, which has the filename Param_`dataext`.mat |
 |  Data concatenation method |`runM`     | control the way to concatenate the data| If `runM`=1, concatenate all `D0{i,j}` as a whole group and detect group QPP; if `runM`=2, concatenate all `D0{i,:}` and detect QPP from all scans of each subject; if `runM`=3, concatenate all `D0{:,:}` and detect QPP from all subjects of each scan.|
-| QPP detection	method|`rbstScrn`     | control for fast QPP detection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selects a limited number of starting points which was used in (Abbas, Bassil, et al., 2019; Abbas, Belloy, et al., 2019; Belloy et al., 2018; Majeed et al., 2011; Raut et al., 2021; Yousefi et al., 2018), whereas the robust detection selects all possible starting points which was used in (Maltbie et al., 2022; Xu et al., 2023; Yousefi & Keilholz, 2021).|
+| QPP detection	method|`rbstScrn`     | control for fast QPP detection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selects a limited number of starting points which was used in (Abbas, Bassil, et al., 2019; Abbas, Belloy, et al., 2019; Belloy et al., 2018; Majeed et al., 2011; Maltbie et al., 2022; Raut et al., 2021; Yousefi et al., 2018), whereas the robust detection selects all possible starting points which was used in (Xu et al., 2023; Yousefi & Keilholz, 2021).|
 
 <a name="section-2-1-1"></a>
 #### 2.2.2 Automated QPP analysis & Final key output variables
