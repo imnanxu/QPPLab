@@ -107,7 +107,7 @@ In addition to the 3 parameters described in [Section 2.2.1](#section-2-2-1), th
 | 3 | sliding correlation timecourses with maxima and minima labeled |
 | 4 | sliding correlation timecourses before and after QPP regression|
 | 5 | histograms of sliding correlation timecourses before and after QPP regression|
-| 6 | functional connectivity (FC) matrix before (upper triangule) and after (lower triangule) QPP regression |
+| 6 | functional connectivity (FC) matrix before (upper triangular) and after (lower triangular) QPP regression |
 
 In figures 1, 2, and 6, ROIs are reorganized based on networks.
 
