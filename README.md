@@ -52,7 +52,7 @@ The following variables will be predefined, and a parameter file Params_`data`\_
 |------------------|-----------------|--------|-------------|
 |  Filepath  		|`data`   | the input filename |The input should has the filename `data`.mat |
 |    	|`ext`    | the parameter filename extension | The parameter filename will be  Params_`data`\_`ext`.mat |
-|  QPP global parameters|`nP`     | total # of QPPs to detect | If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc. |
+|  QPP global parameters|`nP`     | total # of QPPs to detect (`nP`<=5) | If nP=1, only detect the primary QPP (QPP1); if nP=2, detect both QPP1 & QPP2; etc. |
 |	 	|`PL`     | a (`nP` X 1) vector of QPP window length | ~20s for humans (e.g., PL(ip)=20/TR), |
 |  QPP detection	parameters |`cth13` & `cth34`     | a 2D vector of correlation threshold for QPP1-QPP3 (`cth13`) & for QPP4-QPP5 (`cth45`)| If you do not need to detect QPP4-QPP5, please assign `cth34` a random number (e.g., `cth34`=[0, 0]).|
 |  QPP phase adjustment	parameters|`cthph` | similarity threshold when phase-adjusting (phadj) a QPP |Default value: cthph=0.88|
@@ -69,7 +69,7 @@ The following three parameters need to be prespecified at the beginning of this 
 |------------------|-----------------|-------------|--------|
 |  Filepath  		|`dataext`   | parameter filename |The parameter .mat file generated from step 1, which has the filename Param_`dataext`.mat |
 |  Data concatenation method |`runM`     | control the way to concatenate the data| If `runM`=1, concatenate all `D0{i,j}` as a whole group and detect group QPP; if `runM`=2, concatenate all `D0{i,:}` and detect QPP from all scans of each subject; if `runM`=3, concatenate all `D0{:,:}` and detect QPP from all subjects of each scan.|
-| QPP detection	method|`rbstScrn`     | control for fast QPP detection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection selects a limited number of starting points which was used in (Abbas, Bassil, et al., 2019; Abbas, Belloy, et al., 2019; Belloy et al., 2018; Majeed et al., 2011; Maltbie et al., 2022; Raut et al., 2021; Yousefi et al., 2018), whereas the robust detection selects all possible starting points which was used in (Xu et al., 2023; Yousefi & Keilholz, 2021).|
+| QPP detection	method|`rbstScrn`     | control for fast QPP detection (`rbstScrn`=0) or robust QPP detection (`rbstScrn`=1)|The fast QPP detection randomly selects a limited number of starting points which was used in (Abbas, Bassil, et al., 2019; Abbas, Belloy, et al., 2019; Belloy et al., 2018; Majeed et al., 2011; Maltbie et al., 2022; Raut et al., 2021; Yousefi et al., 2018), whereas the robust detection selects all possible starting points which was used in (Xu et al., 2023; Yousefi & Keilholz, 2021).|
 
 <a name="section-2-1-1"></a>
 #### 2.2.2 Automated QPP analysis & Final key output variables
