@@ -1,5 +1,5 @@
 # A generalized toolbox for QPP detection, analysis, and visualization for rodent and human brains
-This is a generally applicable MATLAB toolbox, which detects, analyzes, and visualizes QPPs and QPP regressed functional connectivity maps from fMRI timeseries of the brain across rodents and humans. This toolbox is a significant modification and extension of [QPP_Scripts_v0620](https://github.com/GT-EmoryMINDlab/QPP_Scripts_v0620), and can analyze QPPs for resting or task-evoked/stimulated brains across species.
+The quasi-periodic spatiotemporal pattern of signal changes (QPP) is one prominent feature of the infraslow BOLD signal that is known to tie to the infraslow neural activity involved in attention and arousal fluctuations, and it has been widely detected in resting and task-evoked brains across species. Existing QPP detection algorithms were developed for specific applications with study-specified parameters and analysing methods. This MATLAB package includes a parameter-simplified and user-friendly as well as generally applicable toolbox for detecting, analysing, and visualizing QPPs and QPP regressed functional connectivity maps from fMRI timeseries of the brain. This paper describes the toolbox’s functionalities and presents its ease of use.
 
 # Table of Contents
 * 1 - [Prerequisite](#section-1)
