@@ -1,4 +1,4 @@
-# A generally applicable MATLAB package for detecting, analysing, and visualizing infraslow quasiperiodic spatiotemporal patterns (QPPs) of whole brain activity
+# A generally applicable MATLAB package for detecting, analysing, and visualizing quasiperiodic spatiotemporal patterns (QPPs) of whole brain activity
 The quasi-periodic spatiotemporal pattern of signal changes (QPP) is one prominent feature of the infraslow BOLD signal that is known to tie to the infraslow neural activity involved in attention and arousal fluctuations, and it has been widely detected in resting and task-evoked brains across species. Existing QPP detection and analyzing tools were developed for specific applications with study-specified parameters and analysing methods. This MATLAB package provides a generally applicable and user-friendly toolbox for detecting, analysing, and visualizing QPPs and other related results from fMRI timeseries of the brain. 
 
 # Table of Contents
