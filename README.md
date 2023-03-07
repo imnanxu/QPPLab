@@ -171,6 +171,7 @@ Maltbie, E., Yousefi, B., Zhang, X., Kashyap, A., & Keilholz, S. (2022). Compari
 Raut, R. v., Snyder, A. Z., Mitra, A., Yellin, D., Fujii, N., Malach, R., & Raichle, M. E. (2021). Global waves synchronize the brain’s functional systems with fluctuating arousal. Science Advances, 7(30). https://doi.org/10.1126/SCIADV.ABF2709/SUPPL_FILE/SCIADV.ABF2709_SM.PDF
 
 Xu, N., Smith, D. M., Jeno, G., Seeburger, D. T., Schumacher, E. H., & Keilholz, S. D. (2023). The interaction between random and systematic visual stimulation and infraslow quasiperiodic spatiotemporal patterns of whole brain activity. BioRxiv, 2022.12.06.519337. https://doi.org/10.1101/2022.12.06.519337
+
 Yousefi, B., & Keilholz, S. (2021). Propagating patterns of intrinsic activity along macroscale gradients coordinate functional connections across the whole brain. NeuroImage, 231, 117827. https://doi.org/10.1016/j.neuroimage.2021.117827
 
 Yousefi, B., Shin, J., Schumacher, E. H., & Keilholz, S. D. (2018). Quasi-periodic patterns of intrinsic brain activity in individuals and their relationship to global signal. NeuroImage, 167, 297–308. https://doi.org/10.1016/j.neuroimage.2017.11.043
