@@ -1,8 +1,8 @@
 clear; clc; close all
 %% Setup data input, output directory & running method
 % dataext='HumanVisual_test'; % extended filename=[data '_' ext];
-dataext='HCPR3gsr_test'; % extended filename=[data '_' ext];
-runM=1; % QPP running method
+dataext='long_task_gsr_4tasks_nP5'; % extended filename=[data '_' ext];
+runM=3; % QPP running method
 % runM: 1 -concatenate all D{i,j} as a whole group and detect group QPP
 %       2 -concatenate all D{i,:} and detect QPP from all scans of each subject
 %       3 -concatenate all D{:,j} and detect QPP from all subjects of each
@@ -45,15 +45,17 @@ for ig=1:Ng % gp id
      
 end
 %% Computation
-% delete(gcp('nocreate'));
-% parpool(4,'IdleTimeout', 100000)
+delete(gcp('nocreate'));
+myCluster = parcluster('local'); myCluster.NumWorkers = 56;  % 'Modified' property now TRUE
+saveProfile(myCluster); 
+parpool(56,'IdleTimeout',100000000)
 for ig=1:Ng
-    if runM==1,     D1=D0; MotionInf1=MotionInf;
-    elseif runM==2, D1=D0(ig,:); MotionInf1=MotionInf(ig,:);
-    elseif runM==3, D1=D0(:,ig); MotionInf1=MotionInf(:,ig); 
+    if runM==1,     D00=D0; MotionInf1=MotionInf;
+    elseif runM==2, D00=D0(ig,:); MotionInf1=MotionInf(ig,:);
+    elseif runM==3, D00=D0(:,ig); MotionInf1=MotionInf(:,ig); 
     end    
      
-    [D, ntlist]=DataMotionSelect(D1, MotionInf1); nscng=length(ntlist); 
+    [D, ntlist]=DataMotionSelect(D00, MotionInf1); nscng=length(ntlist); D1=D;
     paramQPPf1=param_QPPf1(nP, ntlist, PL, cth13, cth45, ssg);
     QPPs=cell(nP,2);  TMXs=QPPs; METs=QPPs;%% QPP templates and their reverse templates    
     QPPas=cell(nP,1); TMXas=QPPas; METas=QPPas; Cas=QPPas; FCrs=QPPas; 
@@ -61,7 +63,8 @@ for ig=1:Ng
     Ds=cell(nP,1); Drs=Ds; Crs=Ds; 
      
     for ip=1:nP       
-        tic; if ip~=1, D=load(p2S{ig,ip-1},'Dr'); D=D.Dr; end
+        tic; if ip~=1, D1=load(p2S{ig,ip-1},'Dr'); D1=D1.Dr; end
+        
         isip=sprintf([indn '%d-QPP%d-'], ig,ip); 
         if rbstScrn==1
             ITP=paramQPPf1.ITProbust{ip}; % for robust detection
@@ -69,7 +72,7 @@ for ig=1:Ng
             ITP=paramQPPf1.ITPfast{ip}; % for fast detection
         end
         
-        [QPP,TMX,C,MET,ITER,TMPL,TMXTMPL,CTMPL,SCMX]=QPPf1detectRbst(D,nscng,ntlist, ...
+        [QPP,TMX,C,MET,ITER,TMPL,TMXTMPL,CTMPL,SCMX]=QPPf1detectRbst(D1,nscng,ntlist, ...
                         paramQPPf1.PL(ip), ...
                         paramQPPf1.cth{ip}, ...
                         paramQPPf1.ncth1(ip), ...
