@@ -84,6 +84,7 @@ For the QPP analysis, the following analytical procedures will be executed: 1) Q
 |`Drs`| a (nP X 1) cell vector| Each cell includes the EPI timeseries after QPP regression.|
 |`Crs`| a (nP X 1) cell vector| Each cell includes the QPP sliding correlation timecourses after QPP regression.|
 |`FCrs`| a (nP X 1) cell vector| Each cell includes the functional connectivity map after the QPP regression.|
+|`iROI2Net`|a (nroi X 1) vector|	Sorted ROI network based on each network. E.g., QPPs{1}(iROI2Net,:) will return ROIs sorted QPP along functional networks.|
 
 Note: Similar to detected QPPs, the phase-adjusted QPP and related variables are saved in the following cell matrices, `QPPas`, `TMXas`, `METas`, `Cas`. All these parameters are saved in the `dataext`\_`*`_QPPs.mat file, where `*` depends on the prespecified parameters.  
         
