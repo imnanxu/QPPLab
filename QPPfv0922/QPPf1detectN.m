@@ -3,6 +3,7 @@ PLh=round(PL/2)+[0 -rem(PL,2)]; % pad length for temporally extending a QPP
 % PLc=round(PL/2)+(1:PL); % range of interest in an extended QPP, matches PLh
 % PLe=PL+sum(PLh); % length of an extended QPP (derivable but saved/read)
 % tsh=floor(PL/4); % max timeshift when comparing QPPs or any 2 templates
+% developed by Nan Xu on June 23, 2021.
 ssg=1;  % starting segment/scan ~, SEE QPPf4regscn
     
 c=double(C); nT=size(D,2); [nX,nT]=size(D); nXL=nX*PL; PLe=PL+sum(PLh);
