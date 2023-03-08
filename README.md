@@ -26,7 +26,7 @@ The quasi-periodic spatiotemporal pattern of signal changes is one prominent fea
 This is a [Matlab](https://www.mathworks.com/) (The Mathworks Inc., Natick, MA, USA, R2018a or a later version) toolbox. Any operational system with Matlab (R2018) installed will be sufficient to run this toolbox. All supporting Matlab functions to be called in the main pipeline are included in ./QPPv0922/ folder.
 
 ### 1.2 Input File (./input/`data`.mat)
-The input file `data`.mat is included in ./input/ folder whereas `data` is the input filename. Five distinct input samples are enclosed in the current ./input/, which includes 1) a visually stimulated human brain dataset, 2) a Human Connectome Project resting human brain dataset, 3) a resting rat brain dataset, and 4) a resting mice brain dataset.
+The input file `data`.mat is included in ./input/ folder whereas `data` is the input filename. Two distinct input samples are enclosed in the current ./input/, which includes a visually stimulated brain dataset, and a resting human brain dataset.
 #### 1.2.1 Input variables    
 The input `data`.mat must include the following four variables.
 | Variable name | Description | Note   | 
