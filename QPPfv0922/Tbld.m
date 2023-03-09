@@ -1,4 +1,5 @@
 function T=Tbld(D,tmx,PL,PLh,dv)
+% adopbed from Yousefi-QPPfv0620
 [nX,nT]=size(D); PLe=PL+sum(PLh); nmx=length(tmx); 
 tS=tmx-PLh(1); tE=tmx+PL-1+PLh(2);
 T=zeros(nX,PLe,'single'); 
