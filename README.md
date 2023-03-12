@@ -165,7 +165,7 @@ Abbas, A., Belloy, M., Kashyap, A., Billings, J., Nezafati, M., Schumacher, E. H
 
 Belloy, M. E., Naeyaert, M., Abbas, A., Shah, D., Vanreusel, V., van Audekerke, J., Keilholz, S. D., Keliris, G. A., van der Linden, A., & Verhoye, M. (2018). Dynamic resting state fMRI analysis in mice reveals a set of Quasi-Periodic Patterns and illustrates their relationship with the global signal. In NeuroImage (Vol. 180, pp. 463–484). Academic Press Inc. https://doi.org/10.1016/j.neuroimage.2018.01.075
 
-Majeed, W., Magnuson, M., Hasenkamp, W., Schwarb, H., Schumacher, E. H. H. E. H. H., Barsalou, L., & Keilholz, S. D. D. S. D. (2011). Spatiotemporal dynamics of low frequency BOLD fluctuations in rats and humans. Neuroimage, 54(2), 1140–1150. https://doi.org/10.1016/j.neuroimage.2010.08.030
+Majeed, W., Magnuson, M., Hasenkamp, W., Schwarb, H., Schumacher, E. H., Barsalou, L., & Keilholz, S. D. (2011). Spatiotemporal dynamics of low frequency BOLD fluctuations in rats and humans. Neuroimage, 54(2), 1140–1150. https://doi.org/10.1016/j.neuroimage.2010.08.030
 
 Maltbie, E., Yousefi, B., Zhang, X., Kashyap, A., & Keilholz, S. (2022). Comparison of Resting-State Functional MRI Methods for Characterizing Brain Dynamics. Frontiers in Neural Circuits, 16. https://doi.org/10.3389/FNCIR.2022.681544/FULL
 
