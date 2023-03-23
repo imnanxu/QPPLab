@@ -8,7 +8,7 @@ function [Ddm, ntlist]=DataMotionSelect(D, MotionInf)
 % Ddm: a nROI X (nsbj*nscn) matrix of cancatenated EPI timeseries without
 % significant motions
 % ntlist: a list of timepoint number for each scan
-%% developed by Nan Xu on March 3, 2022.
+%% 
 Ddm=[];  ntlist=[]; scan_ct=0;
 [nsbj,nscn]=size(MotionInf);
 for isbj=1:nsbj

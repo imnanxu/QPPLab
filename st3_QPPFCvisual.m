@@ -1,10 +1,10 @@
 clear; clc; close all
 %% Setup data input & visualization parameters
-% dataext='HumanVisual_test'; % extended filename=[data '_' ext];
-dataext='HCPR3gsr_test'; % extended filename=[data '_' ext];
+% dataext='HumanVisual_allvols'; % extended filename=[data '_' ext];
+dataext='long_task_gsr_4tasks_nP5'; % extended filename=[data '_' ext];
 p2param=['Params_' dataext '.mat']; load(p2param);
 
-runM=1; % QPP running method
+runM=3; % QPP running method
 % runM: 1 -concatenate all D{i,j} as a whole group and detect group QPP
 %       2 -concatenate all D{i,:} and detect QPP from all scans of each subject
 %       3 -concatenate all D{:,j} and detect QPP from all subjects of each
@@ -12,8 +12,8 @@ runM=1; % QPP running method
 rbstScrn=1; % control for robust QPP detection
 %rbstScrn:  1 - scan all possible initial segments for robust QPP detection
 %           0 - scan randomly slected initial segments for fast QPP detection
-Pselect=[1,2,3,4]; %select QPP#s to be visualized
-Gselect=[1,2,3];  %select groups to be compared
+Pselect=[4,5]; %select QPP#s to be visualized
+Gselect=[1:4];  %select groups to be compared
 bin=0.08;
 %% Automatically load data & other hidden parameters
 fprintf('QPP & FC Visualizations...\n'); 
@@ -33,17 +33,16 @@ elseif runM==3
     indn='Scn';
 else, error('Unidenfied value for runM.\n')
 end
-nPs=length(Pselect);
-p2S=cell(Ng,nPs); p2S0=cell(Ng,1); % pth2 save SbjQPPs
+p2S=cell(Ng,nP); p2S0=cell(Ng,1); % pth2 save SbjQPPs
 for ig=Gselect % gp id
-    for ip=Pselect % QPP id
+    for ip=Pselect  % QPP id
         p2S{ig,ip}=[a dataext '_' indn num2str(ig) '_rbst' num2str(rbstScrn) '_qpp' num2str(ip)];
     end
     p2S0{ig}=[a0 dataext '_' indn num2str(ig) '_rbst' num2str(rbstScrn) '_QPPs'];
      
 end
 %% Visualization
-ct=0; 
+ct=0; nPs=length(Pselect);
 for ip=Pselect 
     for ig=Gselect
         load(p2S0{ig},'QPPs','TMXs','Cs','METs', 'QPPas', 'TMXas', 'METas', 'Cas', ...
@@ -53,14 +52,13 @@ for ip=Pselect
  
         ct=ct+1;
         f1=figure(1); %qpps
-        subplot(nPs,Ng,ct); imagesc(QPPs{ip,1}(iROI2Net,:),[-1 1]);        
+        subplot(nPs,Ng,ct); imagesc(QPPs{ip,1}(iROI2Net,:),[-1 1]); colormap(jet)       
         plotNets(ROI2Net,NetLB, PL(ip),0); colorbar
-%         plotNets(YLB,ibY,PL(ip),0);        
         if ig==1, ylabel(['QPP #' num2str(ip)]); end
         if ip==1, title([indn num2str(ig)],'FontSize', 8); end
 
         f2=figure(2); %reverse qpps
-        subplot(nPs,Ng,ct); imagesc(QPPs{ip,2}(iROI2Net,:),[-1 1]); 
+        subplot(nPs,Ng,ct); imagesc(QPPs{ip,2}(iROI2Net,:),[-1, 1]); colormap(jet)
         plotNets(ROI2Net,NetLB, PL(ip),0); colorbar
         if ig==1, ylabel(['rph QPP #' num2str(ip)]); end
         if ip==1, title(['reverse phase (rph) QPP: ' indn num2str(ig)],'FontSize', 8); end
@@ -70,7 +68,7 @@ for ip=Pselect
         TMX1=TMXs{ip,1}; Met1=METs{ip,1}; TMX2=TMXs{ip,2}; Met2=METs{ip,2};
         plot(C1,'b'); hold on; plot(TMX1,C1(TMX1),'bv'); plot(TMX2,C1(TMX2),'bo'); 
         axis([0 length(C1) -1 1]); 
-        set(gca,'XTick',ntlist(1):ntlist(2):sum(ntlist),'YTick',-1:0.2:1); grid on
+        set(gca,'XTick',1:sum(ntlist)/4:sum(ntlist),'YTick',-1:0.2:1); grid on
         title({['sliding correlation: ' indn num2str(ig)],['median max: ' num2str(0.01*round(100*Met1(1))) ...
         ', median \Deltat_{max}:' num2str(0.1*round(10*Met1(2))) ' tps' ...
         ', #max:' num2str(Met1(3))], ['median min: ' num2str(0.01*round(100*Met2(1))) ...
@@ -81,7 +79,7 @@ for ip=Pselect
         f5=figure(4); %qpp sliding correlations before and after qpp regression     
         subplot(nPs,Ng,ct); Cr2=Crs{ip}(ip,:);
         plot(C1,'b'); hold on; plot(Cr2,'r'); axis([0 length(C1) -1 1]); 
-        set(gca,'XTick',ntlist(1):ntlist(2):sum(ntlist),'YTick',-1:0.2:1); grid on          
+        set(gca,'XTick',1:sum(ntlist)/4:sum(ntlist),'YTick',-1:0.2:1); grid on          
         legend('before qpp regression','after ~');
         if ig==1,  ylabel(['QPP #'  num2str(ip)],'FontSize', 8); end
         if ip==1,  title({'sliding corr', ['timecourse: ' indn num2str(ig)]},'FontSize', 8); end
@@ -95,7 +93,7 @@ for ip=Pselect
     
         f7=figure(6); %FC matrix before and after qpp regression     
         subplot(nPs,Ng,ct); FC=corr(Ds{ip}(iROI2Net,:)'); FC1=triu(FC,0); FC2=tril(FCrs{ip},-1);
-        imagesc(FC1+FC2,[-1 1]); colorbar; plotNets(ROI2Net,NetLB, PL(ip),1);        
+        imagesc(FC1+FC2,[-1 1]); colorbar; plotNets(ROI2Net,NetLB, PL(ip),1); colormap(jet)       
         if ig==1,  ylabel(['QPP #'  num2str(ip)],'FontSize', 8); end
         if ip==1, title({['FC before (up) & after (low)'], ['qpp reg: ' indn num2str(ig)]},'FontSize', 8); end
     

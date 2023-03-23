@@ -2,7 +2,7 @@ function [QPPa,TMXa,Ca,METa,SDa,SD,flga,cT1Tj,nsim]=...
     QPPf2phadj(QPP,TMPL,SCMX,TMXTMPL,CTMPL,tsh,PLc,cthph,sdph,s,tres)
 nX=size(QPP,1); PL=length(PLc); nXL=nX*PL; 
 nITP=length(TMPL); nsd=length(sdph); nT=size(CTMPL,2); PLe=size(QPP,2);
-% adopbed from Yousefi-QPPfv0620
+
 %% Comparing QPP with other templates, finding similar ones & sorting
 T1=Tshcfn(QPP,tsh,PLc); % shifting QPP, flattening & normalizing
 Tj=zeros(nXL,nITP,'single'); % flattening & normalizing other templates

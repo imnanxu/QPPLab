@@ -1,5 +1,4 @@
 function plotNets(ROI2Net,NetLB, PL,net)
-%% developed by Nan Xu on May 2021
 if isempty(PL), PL=50; end
 
 PLhs=round(PL/2)+1; PLhe=round(PL/2)+PL;
