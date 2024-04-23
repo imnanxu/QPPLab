@@ -48,7 +48,7 @@ end
 delete(gcp('nocreate'));
 myCluster = parcluster('local'); myCluster.NumWorkers = 56;  % 'Modified' property now TRUE
 saveProfile(myCluster); 
-parpool(56,'IdleTimeout',100000000)
+parpool(myCluster.NumWorkers,'IdleTimeout',100000000)
 for ig=1:Ng
     if runM==1,     D00=D0; MotionInf1=MotionInf;
     elseif runM==2, D00=D0(ig,:); MotionInf1=MotionInf(ig,:);
