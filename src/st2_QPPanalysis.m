@@ -6,7 +6,7 @@ runM=2; % QPP running method
 %       2 -concatenate all D{i,:} and detect QPP from all scans of each subject
 %       3 -concatenate all D{:,j} and detect QPP from all subjects of each
 %       scan
-rbstScrn=1; % control for robust QPP detection
+rbstScrn=0; % control for robust QPP detection
 %rbstScrn:  1 - scan all possible initial segments for robust QPP detection
 %           0 - scan randomly slected initial segments for fast QPP detection
 %% Automatically load data & other hidden parameters
