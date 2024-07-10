@@ -50,7 +50,7 @@ In addition, you will also need to prepare an atlas-network file. This file shou
 The main pipeline comprises three steps, with scripts located in the ./src/ folder. Specifically, the first step (st1_ParamSt.m) initializes the parameters. The second step (st2_QPPanalysis.m) identifies and analyzes QPPs. The third step (st3_QPPFCvisual.m) visualizes QPPs and related results using the outputs from step 2. Note: When running the pipeline in Matlab, ensure that all scripts are executed within the ./src/ folder.
 <a name="section-2-1"></a>
 ### 2.1 (Step 1) Run 'st1_ParamsSet.m'
-The following parameters need to be prespecified before running the script. A parameter file Params_`data`\_`ext`.mat will be generated and saved in the ./param/ folder after running this script.
+The following parameters need to be prespecified before running the script. A parameter file Params_`data`\_`ext`.mat will be generated and saved in the ./params/ folder after running this script.
 |      Category     |  Variable name | Description | Note   | 
 |------------------|-----------------|--------|-------------|
 |  Filepath  		|`data`   | the input filename |The input should has the filename `data`.mat |
@@ -89,7 +89,7 @@ For the QPP analysis, the following analytical procedures will be executed: 1) Q
 |`FCrs`| a (nP X 1) cell vector| Each cell includes the functional connectivity map after the QPP regression.|
 |`iROI2Net`|a (nroi X 1) vector|	Sorted ROI network based on each network. E.g., QPPs{1}(iROI2Net,:) will return ROIs sorted QPP along functional networks.|
 
-Note: Similar to detected QPPs, the phase-adjusted QPP and related variables are saved in the following cell matrices, `QPPas`, `TMXas`, `METas`, `Cas`. All these parameters are saved in the `dataext`\_`*`_QPPs.mat file, where `*` depends on the prespecified parameters.  
+Note: Similar to detected QPPs, the phase-adjusted QPP and related variables are saved in the following cell matrices, `QPPas`, `TMXas`, `METas`, `Cas`. All these parameters are saved in the `./results/dataext`\_`*`_QPPs.mat file, where `*` depends on the prespecified parameters.  
         
 <a name="section-2-3"></a>
 ### 2.3 (Step 3) Run 'st3_QPPFCvisual.m'
