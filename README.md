@@ -47,7 +47,7 @@ In addition, you will also need to prepare an atlas-network file. This file shou
 
 <a name="section-2"></a>
 ## 2. Main Pipeline
-The main pipeline comprises three steps, with scripts located in the ./src/ folder. Specifically, the first step (st1_ParamSt.m) initializes the parameters. The second step (st2_QPPanalysis.m) identifies and analyzes QPPs. The third step (st3_QPPFCvisual.m) visualizes QPPs and related results using the outputs from step 2.
+The main pipeline comprises three steps, with scripts located in the ./src/ folder. Specifically, the first step (st1_ParamSt.m) initializes the parameters. The second step (st2_QPPanalysis.m) identifies and analyzes QPPs. The third step (st3_QPPFCvisual.m) visualizes QPPs and related results using the outputs from step 2. Note: When running the pipeline in Matlab, ensure that all scripts are executed within the ./src/ folder.
 <a name="section-2-1"></a>
 ### 2.1 (Step 1) Run 'st1_ParamsSet.m'
 The following parameters need to be prespecified before running the script. A parameter file Params_`data`\_`ext`.mat will be generated and saved in the ./param/ folder after running this script.
