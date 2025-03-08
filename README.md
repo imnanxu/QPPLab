@@ -61,7 +61,7 @@ The following parameters need to be prespecified before running the script. A pa
 |  QPP phase adjustment	parameters|`cthph` | similarity threshold when phase-adjusting (phadj) a QPP |Default value: cthph=0.88|
 |	 	|`s`     | control for strict phase adjustment (`s`=1) or relaxed phase adjustment (`s`=0)||
 |	  	|`sdph`     | a (nP X 1) cell array of reference parcels| Each cell may include >=1 parcel IDs. The phase-adjusted QPP waveform will start from rising positive values for the selected parcels.|
-|  Functional connectivity (FC) analysis parameters|`fz` | control for the output matrix `FCr` to be the Pearson correlation (`fz`=1) or to be the Fisher Z-Transformation of the Pearson correlation (`fz`=1).|
+|  Functional connectivity (FC) analysis parameters|`fz` | control for the output matrix `FCr` to be the Pearson correlation (`fz`=0) or to be the Fisher Z-Transformation of the Pearson correlation (`fz`=1).|
 
 <a name="section-2-2"></a>
 ### 2.2 (Step 2) Run 'st2_QPPanalysis.m'
